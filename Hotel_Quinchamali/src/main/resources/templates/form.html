@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head"></head>
+<body>
+
+	<header th:replace="layout/layout :: header"></header>
+
+	<div class="container py-4">
+
+		<div class="card bg-light text-black">
+			<div class="card-header" th:text="${titulo}"></div>
+			<div class="card-body">
+
+				<div th:object="${pasajeros}" th:remove="tag">
+					
+				</div>
+				<form th:action="@{/form}" th:object="${pasajeros}" method="post">
+					<div class="form-group row">
+						<label class="col-sm-2 col-form-label">Nombre Completo</label>
+						<div class="col-sm-6">
+							<input type="text" th:field="*{nombre_completo}" class="form-control"
+								th:errorclass="'form-control alert-danger'" /> <small
+								class="form-text text-danger"
+								th:if="${#fields.hasErrors('nombre_completo')}" th:errors="*{nombre_completo}"></small>
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-sm-2 col-form-label">Rut</label>
+						<div class="col-sm-6">
+							<input type="text" th:field="*{rut}" class="form-control"
+								th:errorclass="'form-control alert-danger'" /> <small
+								class="form-text text-danger"
+								th:if="${#fields.hasErrors('rut')}" th:errors="*{rut}"></small>
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-sm-2 col-form-label">Direccion</label>
+						<div class="col-sm-6">
+							<input type="text" th:field="*{direccion}" class="form-control"
+								th:errorclass="'form-control alert-danger'" /> <small
+								class="form-text text-danger"
+								th:if="${#fields.hasErrors('direccion')}" th:errors="*{direccion}"></small>
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-sm-2 col-form-label">Telefono</label>
+						<div class="col-sm-6">
+							<input type="text" class="form-control" th:field="*{telefono}"
+								th:errorclass="'form-control alert-danger'" /> <small
+								class="form-text text-danger"
+								th:if="${#fields.hasErrors('telefono')}" th:errors="*{telefono}"></small>
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-sm-2 col-form-label">Nombre Acompanante</label>
+						<div class="col-sm-6">
+							<input type="text" class="form-control" th:field="*{nombre_acompanante}"
+								th:errorclass="'form-control alert-danger'" /> <small
+								class="form-text text-danger"
+								th:if="${#fields.hasErrors('nombre_acompanante')}" th:errors="*{nombre_acompanante}"></small>
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-sm-2 col-form-label">Patente</label>
+						<div class="col-sm-6">
+							<input type="text" class="form-control" th:field="*{patente}"
+								th:errorclass="'form-control alert-danger'" /> <small
+								class="form-text text-danger"
+								th:if="${#fields.hasErrors('patente')}" th:errors="*{patente}"></small>
+						</div>
+					</div>
+				
+					<div class="form-group row">
+						<div class="col-sm-6">
+							<input type="submit" value="Crear Pasajero" class="btn btn-primary" />
+						</div>
+					</div>
+
+				</form>
+			</div>
+		</div>
+	</div>
+	<footer th:replace="layout/layout :: footer"></footer>
+</body>
+</html>
