@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head"></head>
+<body>
+
+	<header th:replace="layout/layout :: header"></header>
+
+	<div class="container py-4">
+	
+
+		<div class="card bg-light">
+			<div class="card-header" th:text="${titulo}"></div>
+			<div class="card-body">
+
+				<h4 class="card-title">
+					<a th:href="@{/form}" class="btn btn-primary">Crear Pasajero</a>
+				</h4>
+
+				<table class="table table-striped">
+					<thead>
+						<tr>
+						
+							<th>Nombre</th>
+							<th>ci</th>
+							<th>Nacionalidad</th>
+							<th>Direccion</th>
+							<th>telefono</th>
+							<th>Email</th>
+							<th>Patente</th>
+							<th>editar</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="cliente: ${clientes}">
+						
+							<td th:text="${cliente.nombre_completo}"></td>
+							<td th:text="${cliente.ci}"></td>
+							<td th:text="${cliente.nacionalidad}"></td>
+							<td th:text="${cliente.direccion}"></td>
+							<td th:text="${cliente.telefono}"></td>
+							<td th:text="${cliente.email}"></td>
+							<td th:text="${cliente.patente}"></td>
+							<td><a class="btn btn-primary btn-sm"
+								th:href="@{/form/} + ${cliente.id}" th:text="'editar'"></a></td>
+						</tr>
+					</tbody>
+
+				</table>
+				<nav th:replace="paginator-nav :: paginator"></nav>
+			</div>
+		</div>
+	</div>
+	<footer th:replace="layout/layout :: footer"></footer>
+</body>
+</html>
