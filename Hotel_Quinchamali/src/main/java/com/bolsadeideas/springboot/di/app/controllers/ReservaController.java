@@ -60,7 +60,7 @@ public class ReservaController {
 	public String listar(@RequestParam(name = "page", defaultValue = "0") int page, Model model) {
 		Pageable paginacion = PageRequest.of(page, 4);
 		Page<Reserva> reserva = reservaServices.findAll(paginacion);
-		PageRender<Reserva> pageRender = new PageRender<>("/listar", reserva);
+		PageRender<Reserva> pageRender = new PageRender<>("/reserva/listar", reserva);
 		model.addAttribute("titulo", "Listado De Reservas");
 		model.addAttribute("reservas", reserva);
 		model.addAttribute("page", pageRender);
