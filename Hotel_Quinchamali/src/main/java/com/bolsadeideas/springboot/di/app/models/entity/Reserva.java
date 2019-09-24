@@ -19,32 +19,30 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
-
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
 
 @Entity
 @Table(name = "reserva")
 public class Reserva implements Serializable {
 
-	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long numero;
-	@Temporal(TemporalType.TIMESTAMP) // incluye fecha y hora
+	private int numero=0;
+	@Temporal(TemporalType.DATE) // incluye fecha y hora
 	private Date fecha;
 	private String descripcion;
 	@Column(name = "cantidad_habitaciones")
 	private int cantidadHabitaciones;
 	@Temporal(TemporalType.DATE)
 	@NotNull
-	@DateTimeFormat
+	@DateTimeFormat(iso=ISO.DATE)
 	@Column(name = "check_in")
 	private Date checkIn;
 	@Temporal(TemporalType.DATE)
 	@NotNull
-	@DateTimeFormat
+	@DateTimeFormat(iso=ISO.DATE)
 	@Column(name = "check_out")
 	private Date checkOut;
 	@ManyToOne(fetch = FetchType.LAZY)
@@ -57,6 +55,7 @@ public class Reserva implements Serializable {
 
 	@OneToMany(mappedBy = "reserva", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<EstadoReserva> estadosReserva;
+	private static final long serialVersionUID = 1L;
 
 	@PrePersist
 	public void prePersist() {
@@ -88,11 +87,11 @@ public class Reserva implements Serializable {
 		this.id = id;
 	}
 
-	public Long getNumero() {
+	public int getNumero() {
 		return numero;
 	}
 
-	public void setNumero(Long numero) {
+	public void setNumero(int numero) {
 		this.numero = numero;
 	}
 
@@ -167,5 +166,7 @@ public class Reserva implements Serializable {
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
+	
 
+	
 }

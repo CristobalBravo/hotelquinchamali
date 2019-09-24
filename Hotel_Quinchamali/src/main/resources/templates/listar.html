@@ -19,27 +19,26 @@
 				<table class="table table-striped">
 					<thead>
 						<tr>
-							<th>ci</th>
+							<th>Codigo de Identificacion</th>
 							<th>Nombre</th>
-							<th>Nacionalidad</th>
-							<th>Direccion</th>
 							<th>telefono</th>
 							<th>Email</th>
-							<th>Patente</th>
-							<th>editar</th>
+							<th>Editar</th>
+							<th>Reserva</th>
+							
 						</tr>
 					</thead>
 					<tbody>
 						<tr th:each="cliente: ${clientes}">
 							<td><a th:href="@{/ver/} + ${cliente.id}" th:text="${cliente.ci}"></a></td>
 							<td th:text="${cliente.nombre_completo}"></td>
-							<td th:text="${cliente.nacionalidad}"></td>
-							<td th:text="${cliente.direccion}"></td>
 							<td th:text="${cliente.telefono}"></td>
 							<td th:text="${cliente.email}"></td>
-							<td th:text="${cliente.patente}"></td>
 							<td><a class="btn btn-primary btn-sm"
-								th:href="@{/form/} + ${cliente.id}" th:text="'editar'"></a></td>
+								th:href="@{/form/} + ${cliente.id}" th:text="'Editar'"></a></td>
+								
+							<td><a class="btn btn-success btn-sm"
+								th:href="@{/reserva/form/} + ${cliente.id}" th:text="'Reservar'"></a></td>
 						</tr>
 					</tbody>
 

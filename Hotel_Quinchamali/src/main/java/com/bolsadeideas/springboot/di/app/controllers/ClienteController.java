@@ -25,7 +25,7 @@ import com.bolsadeideas.springboot.di.app.models.services.IClienteServicies;
 import com.bolsadeideas.springboot.di.app.paginator.PageRender;
 
 @Controller
-@SessionAttributes("clientes")
+@SessionAttributes("cliente")
 public class ClienteController {
 
 	@Autowired
@@ -41,7 +41,7 @@ public class ClienteController {
 
 		}
 		model.put("cliente", cliente);
-		model.put("titulo", "Cliente : " + cliente.getNombre_completo());
+		model.put("titulo", "Detalle Cliente : " + cliente.getNombre_completo());
 		return "ver";
 
 	}
@@ -51,7 +51,7 @@ public class ClienteController {
 		Pageable paginacion = PageRequest.of(page, 4);
 		Page<Cliente> clientes = clienteServices.findAll(paginacion);
 		PageRender<Cliente> pageRender = new PageRender<>("/listar", clientes);
-		model.addAttribute("titulo", "Listado de clientes");
+		model.addAttribute("titulo", "Listado De Clientes");
 		model.addAttribute("clientes", clientes);
 		model.addAttribute("page", pageRender);
 		return "listar";
