@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head">
+
+
+</head>
+<body>
+
+	<header th:replace="layout/layout :: header"></header>
+
+	<div class="container py-4">
+
+		<div class="card bg-light text-black">
+			<div class="card-header" th:text="${titulo}"></div>
+			<div class="card-body">
+
+				<div th:object="${habitacion}" th:remove="tag">
+					<ul th:if="${#fields.hasErrors('*')}" class="alert alert-danger">
+						<li th:each="err: ${#fields.errors('*')}" th:text="${err}"></li>
+					</ul>
+				</div>
+				<form name ="tipo" th:action="@{/form}" th:object="${habitacion}" method="post">
+
+					<div class="form-group">
+						<label for="exampleSelect1">Tipo Habitacion</label> 
+						<select name ="precio" onchange="getPrecio()"
+							class="form-control" >
+							<option value ="39000">Single</option>
+							<option value ="45000">Matrimonial</option>
+							<option value ="59000">Triple</option>
+							<option value ="66000">Cuadruple</option>
+						</select>
+						
+						</div>
+					
+					<label id="salida"></label>
+
+					
+
+					<div class="form-group row">
+						<div class="col-sm-6">
+							<input type="submit" value="Guardar Habitacion"
+								class="btn btn-primary" />
+						</div>
+					</div>
+
+				</form>
+			</div>
+		</div>
+	</div>
+	<footer th:replace="layout/layout :: footer"></footer>
+</body>
+	<script>
+	function getPrecio(){
+		document.getElementById('salida').innerHTML=
+			("El precio de la habitacion escogida es"+tipo.precio[tipo.precio.selectedIndex].text)
+	}
+	</script>
+</html>
