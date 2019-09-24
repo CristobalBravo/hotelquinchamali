@@ -12,7 +12,9 @@
 			<div class="card-body">
 
 				<div th:object="${cliente}" th:remove="tag">
-					
+					<ul th:if="${#fields.hasErrors('*')}" class="alert alert-danger">
+						<li th:each="err: ${#fields.errors('*')}" th:text="${err}"></li>
+					</ul>
 				</div>
 				<form th:action="@{/form}" th:object="${cliente}" method="post">
 					<div class="form-group row">
@@ -59,7 +61,7 @@
 					<div class="form-group row">
 						<label class="col-sm-2 col-form-label">Telefono</label>
 						<div class="col-sm-6">
-							<input type="number" class="form-control" th:field="*{telefono}"
+							<input type="tel" class="form-control" th:field="*{telefono}"
 								th:errorclass="'form-control alert-danger'" /> <small
 								class="form-text text-danger"
 								th:if="${#fields.hasErrors('telefono')}" th:errors="*{telefono}"></small>

@@ -21,10 +21,11 @@ public class Habitacion implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private int numero;
+	private String tipo;
+	private String precio;
+	
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Reserva reserva;
-	@ManyToOne(fetch = FetchType.LAZY)
-	private TipoHabitacion tipoHabitacion;
 	@OneToMany(mappedBy = "habitacion", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<Huesped> huespedes;
 
@@ -56,12 +57,20 @@ public class Habitacion implements Serializable {
 		this.reserva = reserva;
 	}
 
-	public TipoHabitacion getTipoHabitacion() {
-		return tipoHabitacion;
+	public String getTipo() {
+		return tipo;
 	}
 
-	public void setTipoHabitacion(TipoHabitacion tipoHabitacion) {
-		this.tipoHabitacion = tipoHabitacion;
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
+	}
+
+	public String getPrecio() {
+		return precio;
+	}
+
+	public void setPrecio(String precio) {
+		this.precio = precio;
 	}
 
 	public List<Huesped> getHuespedes() {

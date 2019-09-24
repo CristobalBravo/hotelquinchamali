@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head"></head>
+<body>
+
+	<header th:replace="layout/layout :: header"></header>
+
+	<div class="container py-4">
+
+
+		<div class="card bg-light">
+			<div class="card-header" th:text="${titulo}"></div>
+			<div class="card-body">
+
+				
+
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th>Ingreso</th>
+							<th>Salida</th>
+							<th>Numero De Reserva</th>
+							<th>Descripcion</th>
+							<th>Fecha</th>
+							<th>Editar</th>
+							<th>Eliminar</th>
+							
+							
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="reserva: ${reservas}">
+							<!--<td><a th:href="@{/ver/} + ${cliente.id}" th:text="${cliente.ci}"></a></td> -->
+							<td th:text="${reserva.checkIn}"></td>
+							<td th:text="${reserva.checkOut}"></td>
+							<td th:text="${reserva.numero}"></td>
+							<td th:text="${reserva.descripcion}"></td>
+							<td th:text="${reserva.fecha}"></td>
+							
+							<td><a class="btn btn-primary btn-sm"
+								th:href="@{/reserva/form/} + ${reserva.id}" th:text="'Editar'"></a></td>
+								
+							<!--<td><a class="btn btn-success btn-sm"
+								th:href="@{/reserva/form/} + ${cliente.id}" th:text="'Reservar'"></a></td>-->
+						</tr>
+					</tbody>
+
+				</table>
+				<nav th:replace="paginator-nav :: paginator"></nav>
+			</div>
+		</div>
+	</div>
+	<footer th:replace="layout/layout :: footer"></footer>
+</body>
+</html>
