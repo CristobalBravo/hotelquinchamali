@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head"></head>
+<body>
+
+	<header th:replace="layout/layout :: header"></header>
+
+	<div class="container py-4">
+
+		<div class="card bg-light text-black">
+			<div class="card-header" th:text="${titulo}"></div>
+			<div class="card-body">
+				<h4 class="card-title">
+					<a class="btn btn-success btn-sm"
+						th:href="@{/reserva/form/} + ${cliente.id}" th:text="'Reservar'"></a>
+				</h4>
+
+				<ul class="list-group">
+					<div class="form-group row">
+						<label class="col-sm-2 col-form-label">Codigo De
+							Identificacion</label>
+
+						<li class="list-group-item" th:text="${cliente.ci}"></li>
+
+					</div>
+					<div class="form-group row">
+						<label class="col-sm-2 col-form-label">Nacionalidad</label>
+
+						<li class="list-group-item" th:text="${cliente.nacionalidad}"></li>
+					</div>
+					<div class="form-group row">
+						<label class="col-sm-2 col-form-label">Direccion</label>
+						<li class="list-group-item" th:text="${cliente.direccion}"></li>
+					</div>
+					<div class="form-group row">
+						<label class="col-sm-2 col-form-label">Patente</label>
+						<li class="list-group-item" th:text="${cliente.patente}"></li>
+					</div>
+					<div class="form-group row">
+						<label class="col-sm-2 col-form-label">Telefono</label>
+						<li class="list-group-item" th:text="${cliente.telefono}"></li>
+					</div>
+				</ul>
+
+				<div th:if="${#lists.isEmpty(cliente.reservas)}"
+					class="alet alert-info my-4"
+					th:text="'No hay reservas asignadas para el cliente : ' + ${cliente.nombre_completo}"></div>
+
+				<table th:if="${not #lists.isEmpty(cliente.reservas)}"
+					class="table table-bordered table-spriped my-4">
+					<thead>
+						<tr>
+							<th>Ingreso</th>
+							<th>Salida</th>
+							<th>Numero De Reserva</th>
+							<th>Fecha De Reserva</th>
+							<th>Descripcion</th>
+							<th>Cantidad Habitaciones</th>							
+							<th>Escoger Habitacion</th>
+							
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="reserva: ${cliente.reservas}">
+							<td th:text="${reserva.checkIn}"></td>
+							<td th:text="${reserva.checkOut}"></td>
+							<td th:text="${reserva.numero}"></td>
+							<td th:text="${reserva.fecha}"></td>
+							<td th:text="${reserva.descripcion}"></td>
+							<td th:text="${reserva.cantidadHabitaciones}"></td>
+							<td><a class="btn btn-success btn-sm"
+								th:href="@{/habitacion/form/} + ${reserva.id}" th:text="'Escoger'"></a></td>
+							
+						</tr>
+					</tbody>
+				</table>
+
+			</div>
+		</div>
+	</div>
+	<footer th:replace="layout/layout :: footer"></footer>
+</body>
+</html>
