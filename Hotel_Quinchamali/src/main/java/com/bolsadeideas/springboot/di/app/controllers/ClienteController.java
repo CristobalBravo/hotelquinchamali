@@ -46,7 +46,7 @@ public class ClienteController {
 
 	}
 
-	@RequestMapping(value = { "/listar", "/" }, method = RequestMethod.GET)
+	@RequestMapping(value = { "/listar" }, method = RequestMethod.GET)
 	public String listar(@RequestParam(name = "page", defaultValue = "0") int page, Model model) {
 		Pageable paginacion = PageRequest.of(page, 4);
 		Page<Cliente> clientes = clienteServices.findAll(paginacion);
@@ -66,6 +66,11 @@ public class ClienteController {
 		return "form";
 	}
 
+	@RequestMapping("")
+	public String home(Model model) {
+		return "home";
+	}
+	
 	@RequestMapping(value = "/editar/{id}")
 	public String editar(@PathVariable(value = "id") Long id, Model model, RedirectAttributes flash) {
 		Cliente cliente = null;
