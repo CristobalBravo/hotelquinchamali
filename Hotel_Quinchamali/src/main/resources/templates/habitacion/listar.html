@@ -17,28 +17,24 @@
 				<table class="table table-striped">
 					<thead>
 						<tr>
-							<th>Ingreso</th>
-							<th>Salida</th>
-							<th>Numero De Reserva</th>
-							<th>Descripcion</th>
-							<th>Fecha</th>
-							<th>Editar</th>
-							<th>Eliminar</th>
+							<th>Numero De Habitacion</th>
+							<th>Tipo Habitacion</th>
+							<th>Precio Habitacion</th>
+						<!--	<th>Editar</th>
+							<th>Eliminar</th> -->
 							
 							
 						</tr>
 					</thead>
 					<tbody>
-						<tr th:each="reserva: ${reservas}">
+						<tr th:each="habitacion: ${Habitaciones}">
 							<!--<td><a th:href="@{/ver/} + ${cliente.id}" th:text="${cliente.ci}"></a></td> -->
-							<td th:text="${reserva.checkIn}"></td>
-							<td th:text="${reserva.checkOut}"></td>
-							<td th:text="${reserva.id}"></td>
-							<td th:text="${reserva.descripcion}"></td>
-							<td th:text="${reserva.fecha}"></td>
-							
-							<td><a class="btn btn-primary btn-sm"
-								th:href="@{/reserva/editar/} + ${reserva.id}" th:text="'Editar'"></a></td>
+							<td th:text="${habitacion.numero}"></td>
+							<td th:text="${habitacion.tipoHabitacion.nombre}"></td>
+							<td th:text="${habitacion.tipoHabitacion.precio}"></td>
+
+							<!--<td><a class="btn btn-primary btn-sm"
+								th:href="@{/habitacion/editar/} + ${reserva.id}" th:text="'Editar'"></a></td> -->
 								
 							<!--<td><a class="btn btn-success btn-sm"
 								th:href="@{/reserva/form/} + ${cliente.id}" th:text="'Reservar'"></a></td>-->

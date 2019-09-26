@@ -37,7 +37,7 @@ public class ReservaController {
 	private IReservaServicies reservaServices;
 	
 	
-	@GetMapping("/form/{clienteid}")
+	@GetMapping("/crear/{clienteid}")
 	public String crear(@PathVariable(value="clienteid") Long clienteid, Map<String, Object> model,RedirectAttributes flash) {
 		
 		Cliente cliente= clienteServicies.finOne(clienteid);
@@ -48,7 +48,6 @@ public class ReservaController {
 		
 		Reserva reserva = new Reserva();
 		reserva.setCliente(cliente);
-		reserva.setNumero(reserva.getNumero()+1);
 		model.put("reserva", reserva);
 		model.put("titulo","Crear reserva");
 		
@@ -82,7 +81,7 @@ public class ReservaController {
 		return "redirect:/ver/"+id;
 	}
 	
-	@RequestMapping(value = "/form/{id}")
+	@RequestMapping(value = "/editar/{id}")
 	public String editar(@PathVariable(value = "id") Long id, Model model, RedirectAttributes flash) {
 		Reserva reserva = null;
 		if (id > 0) {
@@ -94,7 +93,7 @@ public class ReservaController {
 		}
 		model.addAttribute("reserva", reserva);
 		model.addAttribute("titulo", "Editar Reserva");
-		return "form";
+		return "reserva/form";
 	}
 	
 	

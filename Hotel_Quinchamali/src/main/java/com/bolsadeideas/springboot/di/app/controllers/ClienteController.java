@@ -57,7 +57,7 @@ public class ClienteController {
 		return "listar";
 	}
 
-	@RequestMapping(value = "/form") // redireccionamiento a la url
+	@RequestMapping(value = "/crear") // redireccionamiento a la url
 	public String crear(Map<String, Object> model) {
 
 		Cliente cliente = new Cliente();
@@ -66,7 +66,7 @@ public class ClienteController {
 		return "form";
 	}
 
-	@RequestMapping(value = "/form/{id}")
+	@RequestMapping(value = "/editar/{id}")
 	public String editar(@PathVariable(value = "id") Long id, Model model, RedirectAttributes flash) {
 		Cliente cliente = null;
 		if (id > 0) {
@@ -81,7 +81,7 @@ public class ClienteController {
 		return "form";
 	}
 
-	@RequestMapping(value = "/form", method = RequestMethod.POST)
+	@RequestMapping(value = "/crear", method = RequestMethod.POST)
 	public String guardar(@Valid Cliente cliente, BindingResult result, Model model, SessionStatus status,
 			RedirectAttributes flash) {
 		if (result.hasErrors()) {

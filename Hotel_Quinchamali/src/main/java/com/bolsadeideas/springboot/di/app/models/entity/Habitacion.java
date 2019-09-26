@@ -12,6 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -21,9 +22,8 @@ public class Habitacion implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private int numero;
-	private String tipo;
-	private String precio;
-	
+	@OneToOne(fetch = FetchType.LAZY)
+	private TipoHabitacion tipoHabitacion; 
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Reserva reserva;
 	@OneToMany(mappedBy = "habitacion", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
@@ -57,22 +57,6 @@ public class Habitacion implements Serializable {
 		this.reserva = reserva;
 	}
 
-	public String getTipo() {
-		return tipo;
-	}
-
-	public void setTipo(String tipo) {
-		this.tipo = tipo;
-	}
-
-	public String getPrecio() {
-		return precio;
-	}
-
-	public void setPrecio(String precio) {
-		this.precio = precio;
-	}
-
 	public List<Huesped> getHuespedes() {
 		return huespedes;
 	}
@@ -83,6 +67,16 @@ public class Habitacion implements Serializable {
 	public void addHuesped(Huesped huesped) {
 		huespedes.add(huesped);
 	}
+	
+
+	public TipoHabitacion getTipoHabitacion() {
+		return tipoHabitacion;
+	}
+
+	public void setTipoHabitacion(TipoHabitacion tipoHabitacion) {
+		this.tipoHabitacion = tipoHabitacion;
+	}
+
 
 	private static final long serialVersionUID = 1L;
 

@@ -13,7 +13,7 @@
 			<div class="card-body">
 
 				<h4 class="card-title">
-					<a th:href="@{/form}" class="btn btn-primary">Crear Pasajero</a>
+					<a th:href="@{/crear}" class="btn btn-primary">Crear Pasajero</a>
 				</h4>
 
 				<table class="table table-striped">
@@ -35,10 +35,10 @@
 							<td th:text="${cliente.telefono}"></td>
 							<td th:text="${cliente.email}"></td>
 							<td><a class="btn btn-primary btn-sm"
-								th:href="@{/form/} + ${cliente.id}" th:text="'Editar'"></a></td>
+								th:href="@{/editar/} + ${cliente.id}" th:text="'Editar'"></a></td>
 								
 							<td><a class="btn btn-success btn-sm"
-								th:href="@{/reserva/form/} + ${cliente.id}" th:text="'Reservar'"></a></td>
+								th:href="@{/reserva/crear/} + ${cliente.id}" th:text="'Reservar'"></a></td>
 						</tr>
 					</tbody>
 

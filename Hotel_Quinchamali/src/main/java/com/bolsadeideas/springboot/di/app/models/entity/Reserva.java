@@ -12,6 +12,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
@@ -29,7 +30,6 @@ public class Reserva implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	private int numero=0;
 	@Temporal(TemporalType.DATE) // incluye fecha y hora
 	private Date fecha;
 	private String descripcion;
@@ -45,14 +45,17 @@ public class Reserva implements Serializable {
 	@DateTimeFormat(iso=ISO.DATE)
 	@Column(name = "check_out")
 	private Date checkOut;
+	
+	
+	
+	
+	//Relaciones//
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Cliente cliente;
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Venta venta;
-
-	@OneToMany(mappedBy = "reserva", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@ManyToMany(mappedBy = "reserva", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<Habitacion> habitaciones;
-
 	@OneToMany(mappedBy = "reserva", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<EstadoReserva> estadosReserva;
 	private static final long serialVersionUID = 1L;
@@ -87,13 +90,7 @@ public class Reserva implements Serializable {
 		this.id = id;
 	}
 
-	public int getNumero() {
-		return numero;
-	}
 
-	public void setNumero(int numero) {
-		this.numero = numero;
-	}
 
 	public Date getFecha() {
 		return fecha;
