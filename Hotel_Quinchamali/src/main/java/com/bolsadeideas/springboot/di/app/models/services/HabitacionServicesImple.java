@@ -8,13 +8,19 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import com.bolsadeideas.springboot.di.app.models.dao.IHabitacionDao;
+import com.bolsadeideas.springboot.di.app.models.dao.IPrecioDao;
 import com.bolsadeideas.springboot.di.app.models.entity.Habitacion;
+import com.bolsadeideas.springboot.di.app.models.entity.TipoHabitacion;
 
 @Service
-public class HabitacionServicesImple {
+public class HabitacionServicesImple  implements IHabitacionServices{
 	
 	@Autowired
 	private IHabitacionDao habitacionDao;
+	@Autowired
+	private IPrecioDao precioDao;
+	
+	
 	@Transactional(readOnly = true) // solo lectura
 	public List<Habitacion> findAll() {
 		return (List<Habitacion>) habitacionDao.findAll();
@@ -38,4 +44,18 @@ public class HabitacionServicesImple {
 		
 		return habitacionDao.findAll(paginacion);
 	}
+	@Transactional(readOnly = true)
+	public List<TipoHabitacion> findByNombre(String nombre){
+		return precioDao.findByNombre(nombre);
+	}
+	@Transactional
+	public void saveTipoHabitacion(TipoHabitacion tipoHabitacion) {
+		precioDao.save(tipoHabitacion);
+		
+	}	
+	@Transactional(readOnly = true)
+	public TipoHabitacion findTipoHabitacionById(Long id) {
+		return precioDao.findById(id).orElse(null);
+	}
+	
 }

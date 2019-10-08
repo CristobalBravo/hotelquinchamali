@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -12,6 +13,9 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -54,8 +58,12 @@ public class Reserva implements Serializable {
 	private Cliente cliente;
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Venta venta;
-	@ManyToMany(mappedBy = "reserva", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	private List<Habitacion> habitaciones;
+	@ManyToMany
+	@JoinTable(
+	  name = "reserva_habitaciones", 
+	  joinColumns = @JoinColumn(name ="reserva_id" ),
+	  inverseJoinColumns = @JoinColumn(name="habitacion_id"))
+	Set<Habitacion> habitaciones;
 	@OneToMany(mappedBy = "reserva", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<EstadoReserva> estadosReserva;
 	private static final long serialVersionUID = 1L;
@@ -67,9 +75,7 @@ public class Reserva implements Serializable {
 
 	public Reserva() {
 		estadosReserva = new ArrayList<EstadoReserva>();
-		habitaciones = new ArrayList<Habitacion>();
 	}
-
 	public List<EstadoReserva> getEstadoReserva() {
 		return estadosReserva;
 	}
@@ -78,6 +84,14 @@ public class Reserva implements Serializable {
 		this.estadosReserva = estadoReserva;
 	}
 	
+	public Set<Habitacion> getHabitaciones() {
+		return habitaciones;
+	}
+
+	public void setHabitaciones(Set<Habitacion> habitaciones) {
+		this.habitaciones = habitaciones;
+	}
+
 	public void addEstadoReserva(EstadoReserva estadoReserva) {
 		estadosReserva.add(estadoReserva);
 	}
@@ -89,8 +103,6 @@ public class Reserva implements Serializable {
 	public void setId(Long id) {
 		this.id = id;
 	}
-
-
 
 	public Date getFecha() {
 		return fecha;
@@ -148,17 +160,13 @@ public class Reserva implements Serializable {
 		this.venta = venta;
 	}
 
-	public List<Habitacion> getHabitaciones() {
-		return habitaciones;
-	}
+
 	
 	public void addHabitacion(Habitacion habitacion) {
 		habitaciones.add(habitacion);
 	}
 
-	public void setHabitaciones(List<Habitacion> habitaciones) {
-		this.habitaciones = habitaciones;
-	}
+
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;

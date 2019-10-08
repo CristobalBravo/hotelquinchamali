@@ -22,12 +22,10 @@ public class Habitacion implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private int numero;
-	@OneToOne(fetch = FetchType.LAZY)
-	private TipoHabitacion tipoHabitacion; 
-	@ManyToOne(fetch = FetchType.LAZY)
-	private Reserva reserva;
 	@OneToMany(mappedBy = "habitacion", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<Huesped> huespedes;
+	@ManyToOne(fetch = FetchType.LAZY)
+	private TipoHabitacion tipoHabitacion;
 
 	public Habitacion() {
 		huespedes = new ArrayList<Huesped>();
@@ -49,13 +47,6 @@ public class Habitacion implements Serializable {
 		this.numero = numero;
 	}
 
-	public Reserva getReserva() {
-		return reserva;
-	}
-
-	public void setReserva(Reserva reserva) {
-		this.reserva = reserva;
-	}
 
 	public List<Huesped> getHuespedes() {
 		return huespedes;
@@ -68,7 +59,6 @@ public class Habitacion implements Serializable {
 		huespedes.add(huesped);
 	}
 	
-
 	public TipoHabitacion getTipoHabitacion() {
 		return tipoHabitacion;
 	}

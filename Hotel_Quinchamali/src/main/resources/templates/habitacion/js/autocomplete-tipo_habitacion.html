@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<body>
+	    <script type="text/javascript" th:fragment="javascript">
+    		
+    		$(document).ready(function(){
+    			$("#buscar_tipo_habitacion").autocomplete({
+    				source : function(request, response){
+    					$.ajax({
+    						url: "/habitacion/cargar-tipos_habitacion/" + request.term,
+    						dataType: "json",
+    						data : {
+    							term: request.term
+    						},
+    						success : function(data){
+    							response($.map(data, function(tipoHabitacion){
+    								return {
+    									value: tipoHabitacion.id,
+    									label: tipoHabitacion.nombre,
+    									precio: tipoHabitacion.precio,
+    								};
+    							}));
+    						},
+    					});
+    				},
+    				select : function(event, ui){
+    					$("#buscar_tipo_habitacion").val(ui.item.label);
+    					
+    					return false;
+    				}
+    			});
+    		});
+    	
+    	</script>
+
+</body>
+
+
+</html>

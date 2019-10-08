@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head"></head>
+<body>
+
+	<header th:replace="layout/layout :: header"></header>
+
+	<div class="container py-4">
+
+		<div class="card bg-light text-black">
+			<div class="card-header" th:text="${titulo}"></div>
+			<div class="card-body">
+			 
+
+				
+
+			<form th:action="@{/tipo/crear}" th:object="${tipo}"
+					method="post">
+					<div class="form-group row">
+						<label class="col-sm-2 col-form-label">Tipo Habitacion</label>
+						<div class="col-sm-6">
+							<input type="text" th:field="*{nombre}" class="form-control" />
+						</div>
+					</div>
+					
+				<div class="form-group row">
+						<label class="col-sm-2 col-form-label">Precio</label>
+						<div class="col-sm-6">
+							<input type="tel" class="form-control" th:field="*{precio}"/>
+						</div>
+
+					</div>
+
+				
+
+					<div class="form-group row">
+						<div class="col-sm-6">
+							<input type="submit" value="Crear Tipo"
+								class="btn btn-primary" />
+						</div>
+					</div>
+
+				</form>
+			</div>
+		</div>
+	</div>
+	<footer th:replace="layout/layout :: footer"></footer>
+</body>
+</html>

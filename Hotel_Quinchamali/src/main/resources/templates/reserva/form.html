@@ -10,13 +10,13 @@
 		<div class="card bg-light text-black">
 			<div class="card-header" th:text="${titulo}"></div>
 			<div class="card-body">
-			 
-			 <div th:object="${reserva}" th:remove="tag">
+
+				<div th:object="${reserva}" th:remove="tag">
 					<ul th:if="${#fields.hasErrors('*')}" class="alert alert-danger">
 						<li th:each="err: ${#fields.errors('*')}" th:text="${err}"></li>
 					</ul>
 				</div>
-				
+
 				<form th:action="@{/reserva/crear}" th:object="${reserva}"
 					method="post">
 					<div class="form-group row">
@@ -54,8 +54,8 @@
 						<label class="col-sm-2 col-form-label">Descripcion</label>
 						<div class="col-sm-6">
 							<textarea th:field="*{descripcion}" class="form-control"
-								th:errorclass="'form-control alert-danger'" > </textarea>
-								<small class="form-text text-danger"
+								th:errorclass="'form-control alert-danger'"> </textarea>
+							<small class="form-text text-danger"
 								th:if="${#fields.hasErrors('*{descripcion}')}"
 								th:errors="*{descripcion}"></small>
 						</div>
@@ -73,12 +73,21 @@
 								th:errors="*{cantidadHabitaciones}"></small>
 						</div>
 					</div>
+					<div class="form-group">
+						<label for="buscar_tipo_habitacion"
+							class="col-form-label col-sm-2 text-center font-weight-normal"
+							th:text="'Buscar Tipo Habitacion:'"></label>
+						<div class="col-sm-12">
+							<input type="text" name="buscar_tipo_habitacion"
+								id="buscar_tipo_habitacion" class="form-control" />
+						</div>
+					</div>
 
 					<div class="form-group row">
 						<div class="col-sm-6">
 
-							<input th:href="@{/ver/} + ${reserva.id}" type="submit" value="Crear Reserva"
-								class="btn btn-primary" />
+							<input th:href="@{/ver/} + ${reserva.id}" type="submit"
+								value="Crear Reserva" class="btn btn-primary" />
 						</div>
 					</div>
 
@@ -87,5 +96,8 @@
 		</div>
 	</div>
 	<footer th:replace="layout/layout :: footer"></footer>
+	
+	<script
+		th:replace="reserva/js/autocomplete-tipo_habitacion :: javascript"></script>
 </body>
 </html>

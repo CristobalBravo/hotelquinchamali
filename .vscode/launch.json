@@ -1,0 +1,11 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - HotelQuinchamaliApplication",
+            "request": "launch",
+            "mainClass": "com.bolsadeideas.springboot.di.app.HotelQuinchamaliApplication",
+            "projectName": "Hotel_Quinchamali"
+        }
+    ]
+}
