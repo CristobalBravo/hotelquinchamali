@@ -6,6 +6,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 import com.bolsadeideas.springboot.di.app.models.entity.Cliente;
+import com.bolsadeideas.springboot.di.app.models.entity.Habitacion;
+import com.bolsadeideas.springboot.di.app.models.entity.TipoHabitacion;
 
 
 public interface IClienteServicies {
@@ -21,4 +23,6 @@ public interface IClienteServicies {
 
 	public void deleted(Long id);
 
+
+	public List<Habitacion> findByNombre (String nombre);
 }

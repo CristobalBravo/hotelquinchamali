@@ -11,35 +11,33 @@
 		<div class="card bg-light">
 			<div class="card-header" th:text="${titulo}"></div>
 			<div class="card-body">
-
 				<h4 class="card-title">
-					<a th:href="@{/crear}" class="btn btn-primary">Crear Pasajero</a>
+					<a th:href="@{/tipo/crear}" class="btn btn-primary">Crear Tipo</a>
 				</h4>
+
+
 
 				<table class="table table-striped">
 					<thead>
 						<tr>
-							<th>Codigo de Identificacion</th>
-							<th>Nombre</th>
-							<th>telefono</th>
-							<th>Email</th>
+							<th>Tipo Habitacion</th>
+							<th>Precio Habitacion</th>
 							<th>Editar</th>
-							<th>Reserva</th>
-							
+							<th>Eliminar</th> 
+
+
 						</tr>
 					</thead>
 					<tbody>
-						<tr th:each="cliente: ${clientes}">
-							<td><a th:href="@{/ver/} + ${cliente.id}" th:text="${cliente.ci}"></a></td>
-							<td th:text="${cliente.nombre_completo}"></td>
-							<td th:text="${cliente.telefono}"></td>
-							<td th:text="${cliente.email}"></td>
+						<tr th:each="tipo: ${tipos}">
+							<td th:text="${tipo.nombre}"></td>
+							<td th:text="${tipo.precio}"></td>
 							<td><a class="btn btn-primary btn-sm"
-								th:href="@{/editar/} + ${cliente.id}" th:text="'Editar'"></a></td>
+								th:href="@{/tipo/editar/} + ${tipo.id}" th:text="'Editar'"></a></td>
 								
-							<td><a class="btn btn-success btn-sm"
-								th:href="@{/reserva/crear/} + ${cliente.id}" th:text="'Reservar'"></a></td>
-						</tr>
+								<td><a class="btn btn-danger btn-sm"
+								th:href="@{/tipo/eliminar/} + ${tipo.id}" th:text="'eliminar'"
+								onclick="return confirm('Estás seguro que quieres eliminar?');"></a></td>
 					</tbody>
 
 				</table>

@@ -1,5 +1,6 @@
 package com.bolsadeideas.springboot.di.app.controllers;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.validation.Valid;
@@ -16,12 +17,15 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.bolsadeideas.springboot.di.app.models.entity.Cliente;
+import com.bolsadeideas.springboot.di.app.models.entity.Habitacion;
 import com.bolsadeideas.springboot.di.app.models.entity.Reserva;
+import com.bolsadeideas.springboot.di.app.models.entity.TipoHabitacion;
 import com.bolsadeideas.springboot.di.app.models.services.IClienteServicies;
 import com.bolsadeideas.springboot.di.app.models.services.IReservaServicies;
 import com.bolsadeideas.springboot.di.app.paginator.PageRender;
@@ -37,7 +41,7 @@ public class ReservaController {
 	private IReservaServicies reservaServices;
 	
 	
-	@GetMapping("/form/{clienteid}")
+	@GetMapping("/crear/{clienteid}")
 	public String crear(@PathVariable(value="clienteid") Long clienteid, Map<String, Object> model,RedirectAttributes flash) {
 		
 		Cliente cliente= clienteServicies.finOne(clienteid);
@@ -48,7 +52,6 @@ public class ReservaController {
 		
 		Reserva reserva = new Reserva();
 		reserva.setCliente(cliente);
-		reserva.setNumero(reserva.getNumero()+1);
 		model.put("reserva", reserva);
 		model.put("titulo","Crear reserva");
 		
@@ -60,14 +63,14 @@ public class ReservaController {
 	public String listar(@RequestParam(name = "page", defaultValue = "0") int page, Model model) {
 		Pageable paginacion = PageRequest.of(page, 4);
 		Page<Reserva> reserva = reservaServices.findAll(paginacion);
-		PageRender<Reserva> pageRender = new PageRender<>("/listar", reserva);
+		PageRender<Reserva> pageRender = new PageRender<>("/reserva/listar", reserva);
 		model.addAttribute("titulo", "Listado De Reservas");
 		model.addAttribute("reservas", reserva);
 		model.addAttribute("page", pageRender);
 		return "reserva/listar";
 	}
 	
-	@RequestMapping(value = "/form", method = RequestMethod.POST)
+	@RequestMapping(value = "/crear", method = RequestMethod.POST)
 	public String guardar(@Valid Reserva reserva, BindingResult result, Model model, SessionStatus status,
 			RedirectAttributes flash) {
 		if (result.hasErrors()) {
@@ -82,7 +85,7 @@ public class ReservaController {
 		return "redirect:/ver/"+id;
 	}
 	
-	@RequestMapping(value = "/form/{id}")
+	@RequestMapping(value = "/editar/{id}")
 	public String editar(@PathVariable(value = "id") Long id, Model model, RedirectAttributes flash) {
 		Reserva reserva = null;
 		if (id > 0) {
@@ -94,7 +97,13 @@ public class ReservaController {
 		}
 		model.addAttribute("reserva", reserva);
 		model.addAttribute("titulo", "Editar Reserva");
-		return "form";
+		return "reserva/form";
+	}
+
+	
+	@GetMapping(value ="/cargar-tipos_habitacion/{term}",produces = {"application/json"})
+	public @ResponseBody List<Habitacion> cargarTiposHabitaciones(@PathVariable String term){
+		return clienteServicies.findByNombre(term);
 	}
 	
 	

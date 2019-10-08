@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -12,6 +13,10 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
@@ -29,7 +34,6 @@ public class Reserva implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	private int numero=0;
 	@Temporal(TemporalType.DATE) // incluye fecha y hora
 	private Date fecha;
 	private String descripcion;
@@ -45,14 +49,21 @@ public class Reserva implements Serializable {
 	@DateTimeFormat(iso=ISO.DATE)
 	@Column(name = "check_out")
 	private Date checkOut;
+	
+	
+	
+	
+	//Relaciones//
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Cliente cliente;
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Venta venta;
-
-	@OneToMany(mappedBy = "reserva", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	private List<Habitacion> habitaciones;
-
+	@ManyToMany
+	@JoinTable(
+	  name = "reserva_habitaciones", 
+	  joinColumns = @JoinColumn(name ="reserva_id" ),
+	  inverseJoinColumns = @JoinColumn(name="habitacion_id"))
+	Set<Habitacion> habitaciones;
 	@OneToMany(mappedBy = "reserva", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<EstadoReserva> estadosReserva;
 	private static final long serialVersionUID = 1L;
@@ -64,9 +75,7 @@ public class Reserva implements Serializable {
 
 	public Reserva() {
 		estadosReserva = new ArrayList<EstadoReserva>();
-		habitaciones = new ArrayList<Habitacion>();
 	}
-
 	public List<EstadoReserva> getEstadoReserva() {
 		return estadosReserva;
 	}
@@ -75,6 +84,14 @@ public class Reserva implements Serializable {
 		this.estadosReserva = estadoReserva;
 	}
 	
+	public Set<Habitacion> getHabitaciones() {
+		return habitaciones;
+	}
+
+	public void setHabitaciones(Set<Habitacion> habitaciones) {
+		this.habitaciones = habitaciones;
+	}
+
 	public void addEstadoReserva(EstadoReserva estadoReserva) {
 		estadosReserva.add(estadoReserva);
 	}
@@ -85,14 +102,6 @@ public class Reserva implements Serializable {
 
 	public void setId(Long id) {
 		this.id = id;
-	}
-
-	public int getNumero() {
-		return numero;
-	}
-
-	public void setNumero(int numero) {
-		this.numero = numero;
 	}
 
 	public Date getFecha() {
@@ -151,17 +160,13 @@ public class Reserva implements Serializable {
 		this.venta = venta;
 	}
 
-	public List<Habitacion> getHabitaciones() {
-		return habitaciones;
-	}
+
 	
 	public void addHabitacion(Habitacion habitacion) {
 		habitaciones.add(habitacion);
 	}
 
-	public void setHabitaciones(List<Habitacion> habitaciones) {
-		this.habitaciones = habitaciones;
-	}
+
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;

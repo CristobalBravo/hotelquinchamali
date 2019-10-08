@@ -5,6 +5,7 @@
 <title
 	th:text="'Spring Boot: MVC + Thymeleaf + Data JPA - ' + ${titulo}"></title>
 <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
+<link rel="stylesheet" th:href="@{/css/jquery-ui.min.css}" />
 </head>
 <body>
 	<header th:fragment="header">
@@ -22,6 +23,10 @@
 					</li>
 					<li class="nav-item"><a class="nav-link" th:href="@{/reserva/listar}">Reservas</a>
 					</li>
+					<li class="nav-item"><a class="nav-link" th:href="@{/habitacion/listar}">Habitaciones</a>
+					</li>
+					<li class="nav-item"><a class="nav-link" th:href="@{/tipo/listar}">Precios y Tipo</a>
+					</li>
 				</ul>
 			</div>
 		</nav>
@@ -38,7 +43,7 @@
 
 	<footer th:fragment="footer" class="container">
 		<hr />
-		<img th:src="@{/images/spring-boot.png}" alt="Spring logo" />
+		<img th:src="@{/images/hotel_quinchamali.jpg}" alt="Spring logo" />
 		<p>
 			Powered by <a href="https://projects.spring.io/spring-boot/">Spring
 				Boot</a> y <a href="http://www.thymeleaf.org">Thymeleaf</a>.
@@ -51,6 +56,7 @@
 		<script th:src="@{/js/jquery-3.3.1.min.js}"></script>
 		<script th:src="@{/js/popper.min.js}"></script>
 		<script th:src="@{/js/bootstrap.min.js}"></script>
+		<script th:src="@{/js/jquery-ui.min.js}"></script>
 	</footer>
 
 </body>

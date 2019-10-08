@@ -1,17 +1,32 @@
 package com.bolsadeideas.springboot.di.app.controllers;
 
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import com.bolsadeideas.springboot.di.app.models.dao.IPrecioDao;
+import com.bolsadeideas.springboot.di.app.models.entity.Cliente;
 import com.bolsadeideas.springboot.di.app.models.entity.Habitacion;
-import com.bolsadeideas.springboot.di.app.models.entity.Reserva;
-import com.bolsadeideas.springboot.di.app.models.services.IReservaServicies;
+import com.bolsadeideas.springboot.di.app.models.entity.TipoHabitacion;
+import com.bolsadeideas.springboot.di.app.models.services.IHabitacionServices;
+import com.bolsadeideas.springboot.di.app.models.services.IPrecioServices;
+import com.bolsadeideas.springboot.di.app.paginator.PageRender;
 
 @Controller
 @RequestMapping("/habitacion")
@@ -20,25 +35,74 @@ class HabitacionController {
 	
 
 	@Autowired
-	private IReservaServicies reservaServices;
+	private IHabitacionServices habitacionServices;
 	
+	@Autowired 
+	private IPrecioServices tipoServices;
 	
-	@GetMapping("/form/{reservaId}")
-	public String crear(@PathVariable(value="reservaId") Long reservaId, Map<String, Object> model,RedirectAttributes flash) {
-		Reserva reserva= reservaServices.finOne(reservaId);
-		if(reserva == null) {
-			flash.addFlashAttribute("error", "el cliente no existe");
-			return "redirect:/listar";
-		}
+	@RequestMapping(value = "/crear") // redireccionamiento a la url
+	public String crear(Map<String, Object> model) {
+
+		model.put("tipos", tipoServices.findAll());
 		
 		Habitacion habitacion = new Habitacion();
-		habitacion.setReserva(reserva);
 		model.put("habitacion", habitacion);
-		model.put("titulo","Ingrese Sus Habitaciones");
-		model.put("cantidad", reserva.getCantidadHabitaciones());
+		model.put("titulo", "Formulario de Tipo Habitacion");
+		return "habitacion/form";
+	}
+	
+	@RequestMapping(value = { "/listar"}, method = RequestMethod.GET)
+	public String listar(@RequestParam(name = "page", defaultValue = "0") int page, Model model) {
+		Pageable paginacion = PageRequest.of(page, 20);
+		Page<Habitacion> habitacion = habitacionServices.findAll(paginacion);
+		PageRender<Habitacion> pageRender = new PageRender<>("/habitacion/listar", habitacion);
+		model.addAttribute("titulo", "Listado De Habitaciones");
+		model.addAttribute("Habitaciones", habitacion);
+		model.addAttribute("page", pageRender);
+		return "habitacion/listar";
+	}
+	
+	@RequestMapping(value = "/editar/{id}")
+	public String editar(@PathVariable(value = "id") Long id, Model model, RedirectAttributes flash) {
+		Habitacion habitacion = null;
+		if (id > 0) {
+			habitacion = habitacionServices.finOne(id);
+		} else {
+			flash.addFlashAttribute("error", "error al editar al cliente");
+			return "redirect:/listar";
 
-		return"habitacion/form";
-
+		}
+		model.addAttribute("habitacion", habitacion);
+		model.addAttribute ("tipos", tipoServices.findAll());
+		model.addAttribute("titulo", "Editar Habitacion");
+		
+		return "habitacion/form";
+	}
+	
+	@GetMapping(value ="/cargar-tipos_habitacion/{term}",produces = {"application/json"})
+	public @ResponseBody List<TipoHabitacion> cargarTiposHabitaciones(@PathVariable String term){
+		return habitacionServices.findByNombre(term);
+	}
+	
+	@PostMapping("/crear")
+	public String guardar (Habitacion habitacion , @RequestParam(name = "buscar_tipo_habitacion" , required=false) Long tipoHabitacionId ,RedirectAttributes flash,SessionStatus status) {
+		//System.out.println(tipoHabitacionId);
+		//TipoHabitacion tipo = habitacionServices.findTipoHabitacionById(tipoHabitacionId);
+		//habitacionServices.saveTipoHabitacion(tipoHabitacionId);
+		TipoHabitacion tipoHabitacion= tipoServices.finOne(tipoHabitacionId);
+		habitacion.setTipoHabitacion(tipoHabitacion);
+		habitacionServices.save(habitacion);
+		status.setComplete();
+		flash.addFlashAttribute("success", "Habitacion creada con exito");
+		return "redirect:listar";
+	}
+	@RequestMapping(value = "/eliminar/{id}")
+	public String eliminar(@PathVariable(value = "id") Long id, RedirectAttributes flash) {
+		if (id > 0) {
+			habitacionServices.deleted(id);
+			flash.addFlashAttribute("success", "Habitacion eliminado con exito");
+		}
+		return "redirect:/habitacion/listar";
 	}
 	
 }

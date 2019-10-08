@@ -12,7 +12,7 @@
 			<div class="card-body">
 				<h4 class="card-title">
 					<a class="btn btn-success btn-sm"
-						th:href="@{/reserva/form/} + ${cliente.id}" th:text="'Reservar'"></a>
+						th:href="@{/reserva/crear/} + ${cliente.id}" th:text="'Reservar'"></a>
 				</h4>
 
 				<ul class="list-group">
@@ -64,7 +64,7 @@
 						<tr th:each="reserva: ${cliente.reservas}">
 							<td th:text="${reserva.checkIn}"></td>
 							<td th:text="${reserva.checkOut}"></td>
-							<td th:text="${reserva.numero}"></td>
+							<td th:text="${reserva.id}"></td>
 							<td th:text="${reserva.fecha}"></td>
 							<td th:text="${reserva.descripcion}"></td>
 							<td th:text="${reserva.cantidadHabitaciones}"></td>

@@ -11,37 +11,35 @@
 		<div class="card bg-light">
 			<div class="card-header" th:text="${titulo}"></div>
 			<div class="card-body">
-
-				
+	
+					<h4 class="card-title">
+					<a th:href="@{/habitacion/crear}" class="btn btn-primary">Crear Habitacion</a>
+				</h4>
 
 				<table class="table table-striped">
 					<thead>
 						<tr>
-							<th>Ingreso</th>
-							<th>Salida</th>
-							<th>Numero De Reserva</th>
-							<th>Descripcion</th>
-							<th>Fecha</th>
+							<th>Numero De Habitacion</th>
+							<th>Tipo Habitacion</th>
+							<th>Precio Habitacion</th>
 							<th>Editar</th>
 							<th>Eliminar</th>
-							
 							
 						</tr>
 					</thead>
 					<tbody>
-						<tr th:each="reserva: ${reservas}">
+						<tr th:each="habitacion: ${Habitaciones}">
 							<!--<td><a th:href="@{/ver/} + ${cliente.id}" th:text="${cliente.ci}"></a></td> -->
-							<td th:text="${reserva.checkIn}"></td>
-							<td th:text="${reserva.checkOut}"></td>
-							<td th:text="${reserva.id}"></td>
-							<td th:text="${reserva.descripcion}"></td>
-							<td th:text="${reserva.fecha}"></td>
-							
+							<td th:text="${habitacion.numero}"></td>
+							<td th:text="${habitacion.tipoHabitacion.nombre}"></td>
+							<td th:text="${habitacion.tipoHabitacion.precio}"></td>
+
 							<td><a class="btn btn-primary btn-sm"
-								th:href="@{/reserva/editar/} + ${reserva.id}" th:text="'Editar'"></a></td>
+								th:href="@{/habitacion/editar/} + ${habitacion.id}" th:text="'Editar'"></a></td> 
 								
-							<!--<td><a class="btn btn-success btn-sm"
-								th:href="@{/reserva/form/} + ${cliente.id}" th:text="'Reservar'"></a></td>-->
+					<td><a class="btn btn-danger btn-sm"
+								th:href="@{/habitacion/eliminar/} + ${habitacion.id}" th:text="'eliminar'"
+								onclick="return confirm('Estás seguro que quieres eliminar?');"></a></td>
 						</tr>
 					</tbody>
 

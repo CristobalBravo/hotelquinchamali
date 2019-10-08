@@ -9,13 +9,17 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.bolsadeideas.springboot.di.app.models.dao.IClienteDao;
+import com.bolsadeideas.springboot.di.app.models.dao.IHabitacionDao;
 import com.bolsadeideas.springboot.di.app.models.entity.Cliente;
+import com.bolsadeideas.springboot.di.app.models.entity.Habitacion;
 
 @Service
 public class ClienteServiceImple implements IClienteServicies {
 
 	@Autowired
 	private IClienteDao clientedao;
+	@Autowired
+	private IHabitacionDao habitacionDao;
 	@Transactional(readOnly = true) // solo lectura
 	public List<Cliente> findAll() {
 		return (List<Cliente>) clientedao.findAll();
@@ -38,6 +42,11 @@ public class ClienteServiceImple implements IClienteServicies {
 	public Page<Cliente> findAll(Pageable paginacion) {
 		
 		return clientedao.findAll(paginacion);
+	}
+	@Transactional(readOnly = true) // solo lectura, metodo que permite la paginacion
+	public List<Habitacion> findByNombre(String nombre) {
+		
+		return habitacionDao.findByNombre(nombre);
 	}
 
 }
