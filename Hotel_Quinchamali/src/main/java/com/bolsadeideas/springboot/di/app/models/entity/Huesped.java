@@ -23,6 +23,7 @@ public class Huesped implements Serializable {
 	private String nombreCompleto;
 	@NotNull
 	private String ci;
+
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Habitacion habitacion;
 

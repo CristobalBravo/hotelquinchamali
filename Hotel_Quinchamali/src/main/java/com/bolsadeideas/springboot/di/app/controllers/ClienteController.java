@@ -1,5 +1,6 @@
 package com.bolsadeideas.springboot.di.app.controllers;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.validation.Valid;
@@ -25,6 +26,7 @@ import com.bolsadeideas.springboot.di.app.models.services.IClienteServicies;
 import com.bolsadeideas.springboot.di.app.paginator.PageRender;
 
 @Controller
+@RequestMapping("/admin/cliente")
 @SessionAttributes("cliente")
 public class ClienteController {
 
@@ -36,25 +38,22 @@ public class ClienteController {
 
 		Cliente cliente = clienteServices.finOne(id);
 		if (cliente == null) {
-			flash.addFlashAttribute("error", "el cliente no existe");
+			flash.addFlashAttribute("error", "El Cliente solicitado no existe");
 			return "redirect:/listar";
 
 		}
 		model.put("cliente", cliente);
 		model.put("titulo", "Detalle Cliente : " + cliente.getNombre_completo());
-		return "ver";
+		return "cliente/ver";
 
 	}
 
 	@RequestMapping(value = { "/listar", "/" }, method = RequestMethod.GET)
 	public String listar(@RequestParam(name = "page", defaultValue = "0") int page, Model model) {
-		Pageable paginacion = PageRequest.of(page, 4);
-		Page<Cliente> clientes = clienteServices.findAll(paginacion);
-		PageRender<Cliente> pageRender = new PageRender<>("/listar", clientes);
+		List<Cliente> clientes = clienteServices.findAll();
 		model.addAttribute("titulo", "Listado De Clientes");
 		model.addAttribute("clientes", clientes);
-		model.addAttribute("page", pageRender);
-		return "listar";
+		return "cliente/listar";
 	}
 
 	@RequestMapping(value = "/crear") // redireccionamiento a la url
@@ -62,8 +61,9 @@ public class ClienteController {
 
 		Cliente cliente = new Cliente();
 		model.put("cliente", cliente);
+		model.put("txtbtn", "Crear Cliente");
 		model.put("titulo", "Formulario de Cliente");
-		return "form";
+		return "cliente/form";
 	}
 
 	@RequestMapping(value = "/editar/{id}")
@@ -72,13 +72,14 @@ public class ClienteController {
 		if (id > 0) {
 			cliente = clienteServices.finOne(id);
 		} else {
-			flash.addFlashAttribute("error", "error al editar al cliente");
+			flash.addFlashAttribute("error", "Error al Editar al Cliente.");
 			return "redirect:/listar";
 
 		}
 		model.addAttribute("cliente", cliente);
+		model.addAttribute("txtbtn", "Guardar Cambios del Cliente");
 		model.addAttribute("titulo", "Editar Cliente");
-		return "form";
+		return "cliente/form";
 	}
 
 	@RequestMapping(value = "/crear", method = RequestMethod.POST)
@@ -86,9 +87,9 @@ public class ClienteController {
 			RedirectAttributes flash) {
 		if (result.hasErrors()) {
 			model.addAttribute("titulo", "Formulario de Cliente");
-			return "form";
+			return "cliente/form";
 		}
-		String mensajeFlash = (cliente.getId() != null) ? "cliente editado con exito" : "cliente creado con exito";
+		String mensajeFlash = (cliente.getId() != null) ? "Cliente modificado con éxito." : "Cliente creado con éxito.";
 
 		clienteServices.save(cliente);
 		status.setComplete();
@@ -100,7 +101,7 @@ public class ClienteController {
 	public String eliminar(@PathVariable(value = "id") Long id, RedirectAttributes flash) {
 		if (id > 0) {
 			clienteServices.deleted(id);
-			flash.addFlashAttribute("success", "cliente eliminado con exito");
+			flash.addFlashAttribute("success", "Cliente eliminado con éxito.");
 		}
 		return "redirect:/listar";
 	}

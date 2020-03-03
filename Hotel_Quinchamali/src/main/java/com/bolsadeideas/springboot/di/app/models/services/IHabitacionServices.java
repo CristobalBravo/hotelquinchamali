@@ -1,5 +1,6 @@
 package com.bolsadeideas.springboot.di.app.models.services;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.data.domain.Page;
@@ -10,20 +11,22 @@ import com.bolsadeideas.springboot.di.app.models.entity.TipoHabitacion;
 
 public interface IHabitacionServices {
 	
-	public List<Habitacion> findAll();
+	List<Habitacion> findAll();
 
-	public Page<Habitacion> findAll(Pageable paginacion);
+	Page<Habitacion> findAll(Pageable paginacion);
 
 
-	public void save(Habitacion habitacion);
+	void save(Habitacion habitacion);
 
-	public Habitacion finOne(Long id);
+	Habitacion finOne(Long id);
 
-	public void deleted(Long id);
+	void deleted(Long id);
 
-	public List<TipoHabitacion> findByNombre (String nombre);
+	List<TipoHabitacion> findByNombre (String nombre);
 	
-	public void saveTipoHabitacion(TipoHabitacion tipoHabitacion);
+	void saveTipoHabitacion(TipoHabitacion tipoHabitacion);
 	
-	public TipoHabitacion findTipoHabitacionById(Long id); 
+	TipoHabitacion findTipoHabitacionById(Long id);
+
+	List<Habitacion> findHabitacionDisponible(Date inicio, Date fin);
 }

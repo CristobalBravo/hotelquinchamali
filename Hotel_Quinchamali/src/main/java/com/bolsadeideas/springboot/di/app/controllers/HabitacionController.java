@@ -29,7 +29,7 @@ import com.bolsadeideas.springboot.di.app.models.services.IPrecioServices;
 import com.bolsadeideas.springboot.di.app.paginator.PageRender;
 
 @Controller
-@RequestMapping("/habitacion")
+@RequestMapping("/admin/habitacion")
 @SessionAttributes("habitacion")
 class HabitacionController {
 	
@@ -47,18 +47,17 @@ class HabitacionController {
 		
 		Habitacion habitacion = new Habitacion();
 		model.put("habitacion", habitacion);
-		model.put("titulo", "Formulario de Tipo Habitacion");
+		model.put("txtbtn", "Crear Habitación");
+		model.put("titulo", "Formulario de Tipo de Habitación");
+		model.put("txtbtn", "Crear Tipo de Habitación");
 		return "habitacion/form";
 	}
 	
 	@RequestMapping(value = { "/listar"}, method = RequestMethod.GET)
 	public String listar(@RequestParam(name = "page", defaultValue = "0") int page, Model model) {
-		Pageable paginacion = PageRequest.of(page, 20);
-		Page<Habitacion> habitacion = habitacionServices.findAll(paginacion);
-		PageRender<Habitacion> pageRender = new PageRender<>("/habitacion/listar", habitacion);
+		List<Habitacion> habitacion = habitacionServices.findAll();
 		model.addAttribute("titulo", "Listado De Habitaciones");
 		model.addAttribute("Habitaciones", habitacion);
-		model.addAttribute("page", pageRender);
 		return "habitacion/listar";
 	}
 	
@@ -74,6 +73,7 @@ class HabitacionController {
 		}
 		model.addAttribute("habitacion", habitacion);
 		model.addAttribute ("tipos", tipoServices.findAll());
+		model.addAttribute("txtbtn", "Guardar Cambios");
 		model.addAttribute("titulo", "Editar Habitacion");
 		
 		return "habitacion/form";
@@ -86,14 +86,13 @@ class HabitacionController {
 	
 	@PostMapping("/crear")
 	public String guardar (Habitacion habitacion , @RequestParam(name = "buscar_tipo_habitacion" , required=false) Long tipoHabitacionId ,RedirectAttributes flash,SessionStatus status) {
-		//System.out.println(tipoHabitacionId);
-		//TipoHabitacion tipo = habitacionServices.findTipoHabitacionById(tipoHabitacionId);
-		//habitacionServices.saveTipoHabitacion(tipoHabitacionId);
+
 		TipoHabitacion tipoHabitacion= tipoServices.finOne(tipoHabitacionId);
 		habitacion.setTipoHabitacion(tipoHabitacion);
+		String mensajeFlash = (habitacion.getId() != null) ? "Habitacion editado con exito" : "Habitacion creado con exito";
 		habitacionServices.save(habitacion);
 		status.setComplete();
-		flash.addFlashAttribute("success", "Habitacion creada con exito");
+		flash.addFlashAttribute("success", mensajeFlash);
 		return "redirect:listar";
 	}
 	@RequestMapping(value = "/eliminar/{id}")

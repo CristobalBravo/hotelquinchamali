@@ -1,5 +1,6 @@
 package com.bolsadeideas.springboot.di.app.models.dao;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.Query;
@@ -12,5 +13,8 @@ public interface IHabitacionDao extends PagingAndSortingRepository<Habitacion, L
 	
 	
 	@Query("select t from TipoHabitacion t where t.nombre like %?1%")
-	public List<Habitacion>findByNombre(String nombre);
+	List<Habitacion>findByNombre(String nombre);
+
+	@Query("SELECT s FROM ReservaHabitacion s WHERE s.check_in NOT BETWEEN ?1 AND ?2 OR s.check_out NOT BETWEEN ?1 AND ?2")
+	List<Habitacion> findHabitacionDisponible(Date inicio, Date fin);
 }

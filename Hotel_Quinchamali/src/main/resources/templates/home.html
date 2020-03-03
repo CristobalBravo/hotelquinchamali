@@ -1,0 +1,128 @@
+
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta charset="UTF-8"/>
+    <title>Hotel Quinchamalí</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" th:href="@{/css/jquery-ui.min.css}"/>
+    <link rel="stylesheet" href="//cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
+    <meta name="theme-color" content="#563d7c">
+
+
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+    <!-- Custom styles for this template -->
+    <link rel="stylesheet" th:href="@{/css/album.css}"/>
+</head>
+<body>
+<header>
+    <div class="collapse bg-dark" id="navbarHeader">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-8 col-md-7 py-4">
+                    <h4 class="text-white">Acerca de Nosotros</h4>
+                    <p class="text-muted">Somos una empresa familiar con más de 20 años al servicio de nuestros clientes en Chile y el mundo. Nuestra principal motivación es entregarles el mejor servicio a nuestro alcance, para que usted más que en un hotel, se sienta como en casa. Estamos creciendo día a día, para mejorar nuestras instalaciones y aumentar así, la oferta de servicios a su disposición.</p>
+                </div>
+                <div class="col-sm-4 offset-md-1 py-4">
+                    <a th:href="@{/sign}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Iniciar Sesión</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="navbar navbar-dark bg-dark shadow-sm">
+        <div class="container d-flex justify-content-between">
+            <a href="#" class="navbar-brand d-flex align-items-center">
+                <strong>Hotel Quinchamalí</strong>
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+    </div>
+</header>
+
+<main role="main">
+
+    <section class="jumbotron text-center">
+        <div class="container">
+            <img th:src="@{/images/hotel_quinchamali.jpg}" alt="Spring logo"/>
+            <h1>Hotel Quinchamalí</h1>
+            <p class="lead text-muted">La más cordial bienvenida a Hotel Quinchamalí, en el corazón del centro de la ciudad de Chillán, a pasos del Mall Plaza el Roble.</p>
+        </div>
+    </section>
+
+    <div class="album py-5 bg-light">
+        <div class="container">
+
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card mb-4 shadow-sm">
+                        <img class="bd-placeholder-img card-img-top" width="100%" height="225" th:src="@{/images/habitacion1.jpg}" ocusable="false" role="img" aria-label="Placeholder: Thumbnail">
+                        <div class="card-body">
+                            <p class="card-text">Habitación Single Superior</p>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card mb-4 shadow-sm">
+                        <img class="bd-placeholder-img card-img-top" width="100%" height="225" th:src="@{/images/habitacion2.jpg}" ocusable="false" role="img" aria-label="Placeholder: Thumbnail">
+                        <div class="card-body">
+                            <p class="card-text">Habitación Cuádruple</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card mb-4 shadow-sm">
+                        <img class="bd-placeholder-img card-img-top" width="100%" height="225" th:src="@{/images/habitacion3.jpg}" ocusable="false" role="img" aria-label="Placeholder: Thumbnail">
+                        <div class="card-body">
+                            <p class="card-text">Suite</p>
+
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+</main>
+
+<footer class="text-muted">
+    <div class="container">
+        <p class="float-right">
+            <a href="#">Regresar arriba</a>
+        </p>
+        <p>
+            Powered by <a href="https://projects.spring.io/spring-boot/">SpringBoot</a> y <a href="http://www.thymeleaf.org">Thymeleaf</a>.
+        </p>
+        <p>Este proyecto fue desarrollado en IDE Eclipse + Spring Plugins (STS Spring Tool). &copy; Company 2017,Inc. Todos los derechos reservados. Términos de uso y privacidad.<br/>
+    </div>
+</footer>
+<script th:src="@{/js/jquery-3.3.1.min.js}"></script>
+<script th:src="@{/js/popper.min.js}"></script>
+<script th:src="@{/js/bootstrap.min.js}"></script>
+<script th:src="@{/js/jquery-ui.min.js}"></script>
+</body>
+</html>

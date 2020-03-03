@@ -1,10 +1,14 @@
 package com.bolsadeideas.springboot.di.app.controllers;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
 import javax.validation.Valid;
 
+import com.bolsadeideas.springboot.di.app.models.dao.IReservaHabitacionDao;
+import com.bolsadeideas.springboot.di.app.models.entity.*;
+import com.bolsadeideas.springboot.di.app.models.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -22,16 +26,10 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.bolsadeideas.springboot.di.app.models.entity.Cliente;
-import com.bolsadeideas.springboot.di.app.models.entity.Habitacion;
-import com.bolsadeideas.springboot.di.app.models.entity.Reserva;
-import com.bolsadeideas.springboot.di.app.models.entity.TipoHabitacion;
-import com.bolsadeideas.springboot.di.app.models.services.IClienteServicies;
-import com.bolsadeideas.springboot.di.app.models.services.IReservaServicies;
 import com.bolsadeideas.springboot.di.app.paginator.PageRender;
 
 @Controller
-@RequestMapping("/reserva")
+@RequestMapping("/admin/reserva")
 @SessionAttributes("reserva")
 public class ReservaController {
 	
@@ -39,6 +37,14 @@ public class ReservaController {
 	private IClienteServicies clienteServicies;
 	@Autowired
 	private IReservaServicies reservaServices;
+	@Autowired
+	private IPrecioServices precioServices;
+	@Autowired
+	private IEstadoReservaServices estadoReservaServices;
+	@Autowired
+	private IHabitacionServices habitacionServices;
+	@Autowired
+	private IReservaHabitacionDao reservaHbServices;
 	
 	
 	@GetMapping("/crear/{clienteid}")
@@ -46,27 +52,25 @@ public class ReservaController {
 		
 		Cliente cliente= clienteServicies.finOne(clienteid);
 		if(cliente == null) {
-			flash.addFlashAttribute("error", "el cliente no existe");
-			return "redirect:/listar";
+			flash.addFlashAttribute("error", "El cliente no existe");
+			return "redirect:/admin/reserva/listar";
 		}
 		
 		Reserva reserva = new Reserva();
 		reserva.setCliente(cliente);
+		model.put("tipos", precioServices.findAll());
 		model.put("reserva", reserva);
-		model.put("titulo","Crear reserva");
+		model.put("titulo","Crear Reserva");
 		
 		return"reserva/form";
 	}
 	
 
 	@RequestMapping(value = { "/listar"}, method = RequestMethod.GET)
-	public String listar(@RequestParam(name = "page", defaultValue = "0") int page, Model model) {
-		Pageable paginacion = PageRequest.of(page, 4);
-		Page<Reserva> reserva = reservaServices.findAll(paginacion);
-		PageRender<Reserva> pageRender = new PageRender<>("/reserva/listar", reserva);
+	public String listar(Model model) {
+		List<Reserva> reserva = reservaServices.findAll();
 		model.addAttribute("titulo", "Listado De Reservas");
 		model.addAttribute("reservas", reserva);
-		model.addAttribute("page", pageRender);
 		return "reserva/listar";
 	}
 	
@@ -77,12 +81,12 @@ public class ReservaController {
 			model.addAttribute("titulo", "Formulario de Reserva");
 			return "reserva/form";
 		}
-		String mensajeFlash = (reserva.getId() != null) ? "Reserva editado con exito" : "Reserva creado con exito";
+		String mensajeFlash = (reserva.getId() != null) ? "Reserva editada con eéxito" : "Reserva creada con xito";
 		reservaServices.save(reserva);
 		status.setComplete();
 		flash.addFlashAttribute("success", mensajeFlash);
 		Long id=reserva.getCliente().getId();
-		return "redirect:/ver/"+id;
+		return "redirect:/admin/reserva/listar";
 	}
 	
 	@RequestMapping(value = "/editar/{id}")
@@ -91,8 +95,8 @@ public class ReservaController {
 		if (id > 0) {
 			reserva = reservaServices.finOne(id);
 		} else {
-			flash.addFlashAttribute("error", "error al editar la reserva");
-			return "redirect:/listar";
+			flash.addFlashAttribute("error", "Error al editar la reserva.");
+			return "redirect:/admin/reserva/listar";
 
 		}
 		model.addAttribute("reserva", reserva);
@@ -100,10 +104,80 @@ public class ReservaController {
 		return "reserva/form";
 	}
 
+	@RequestMapping(value = "/registrarhb/{id}")
+	public String registrarHb(@PathVariable(value = "id") Long id, Model model, RedirectAttributes flash) {
+		Reserva reserva = null;
+		if (id > 0) {
+			reserva = reservaServices.finOne(id);
+		} else {
+			flash.addFlashAttribute("error", "Error al editar la reserva.");
+			return "redirect:/admin/reserva/listar";
+
+		}
+
+		List<Habitacion> habitacionesDisponibles = habitacionServices.findHabitacionDisponible(reserva.getCheckIn(),reserva.getCheckOut());
+
+		if(habitacionesDisponibles.size() == 0 && ((List<ReservaHabitacion>) reservaHbServices.findAll()).size() == 0){
+			habitacionesDisponibles = habitacionServices.findAll();
+		}
+		model.addAttribute("reserva", reserva);
+		model.addAttribute("hbdisponible", habitacionesDisponibles);
+		model.addAttribute("titulo", "Registrar Habitaciones y Huesped");
+		return "reserva/registrarhb";
+	}
+
+	@RequestMapping(value = "/registrarhb/save/{id}")
+	public String registrarSaveHb(@PathVariable(value = "id") Long id, Model model, RedirectAttributes flash) {
+		Reserva reserva = null;
+		if (id > 0) {
+			reserva = reservaServices.finOne(id);
+		} else {
+			flash.addFlashAttribute("error", "Error al editar la reserva.");
+			return "redirect:/admin/reserva/listar";
+
+		}
+		model.addAttribute("reserva", reserva);
+		model.addAttribute("titulo", "Registrar Habitaciones y Huesped");
+		return "reserva/registrarhb";
+	}
 	
 	@GetMapping(value ="/cargar-tipos_habitacion/{term}",produces = {"application/json"})
 	public @ResponseBody List<Habitacion> cargarTiposHabitaciones(@PathVariable String term){
 		return clienteServicies.findByNombre(term);
+	}
+	@RequestMapping(value="/confirmar/{id}")
+	public String confirmar (@PathVariable(value = "id") Long id, Model model, RedirectAttributes flash) {
+		Reserva reserva = null;
+		if (id > 0) {
+			reserva = reservaServices.finOne(id);
+		} else {
+			flash.addFlashAttribute("error", "Error al editar la reserva.");
+			return "redirect:/admin/reserva/listar";
+
+		}
+		EstadoReserva estadoReserva = estadoReservaServices.findOne(EstadoReserva.ESTADO_CONFIRMDA);
+		reserva.setEstadoReserva(estadoReserva);
+		reserva.setLastUpdate(new Date());
+		reservaServices.save(reserva);
+		flash.addFlashAttribute("success", "Reserva confirmada con éxito.");
+		return "redirect:/admin/reserva/listar";
+	}
+	@RequestMapping(value = "/eliminar/{id}")
+	public String eliminar(@PathVariable(value = "id") Long id, RedirectAttributes flash) {
+		Reserva reserva = null;
+		if (id > 0) {
+			reserva = reservaServices.finOne(id);
+		} else {
+			flash.addFlashAttribute("error", "Error al eliminar la reserva.");
+			return "redirect:/admin/reserva/listar";
+		}
+		EstadoReserva estadoReserva = estadoReservaServices.findOne(EstadoReserva.ESTADO_ELIMINADA);
+
+		reserva.setEstadoReserva(estadoReserva);
+		reserva.setLastUpdate(new Date());
+		reservaServices.save(reserva);
+		flash.addFlashAttribute("success", "Reserva eliminada con éxito.");
+		return "redirect:/admin/reserva/listar";
 	}
 	
 	

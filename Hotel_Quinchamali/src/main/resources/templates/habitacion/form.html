@@ -7,65 +7,64 @@
 <body>
 
 	<header th:replace="layout/layout :: header"></header>
+	<main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+		<div th:replace="layout/layout :: alerts"></div>
+		<div class="py-4">
 
-	<div class="container py-4">
+			<div class="card bg-light text-black">
+				<div class="card-header" th:text="${titulo}"></div>
+				<div class="card-body">
 
-		<div class="card bg-light text-black">
-			<div class="card-header" th:text="${titulo}"></div>
-			<div class="card-body">
+					<div th:object="${habitacion}" th:remove="tag">
+						<ul th:if="${#fields.hasErrors('*')}" class="alert alert-danger">
+							<li th:each="err: ${#fields.errors('*')}" th:text="${err}"></li>
+						</ul>
+					</div>
 
-				<div th:object="${habitacion}" th:remove="tag">
-					<ul th:if="${#fields.hasErrors('*')}" class="alert alert-danger">
-						<li th:each="err: ${#fields.errors('*')}" th:text="${err}"></li>
-					</ul>
+
+					<form th:action="@{/admin/habitacion/crear}" th:object="${habitacion}"
+						method="post">
+
+
+						<div class="form-group row">
+							<label class="col-sm-2 col-form-label">Numero Habitacion</label>
+							<div class="col-sm-6">
+								<input type="number" class="form-control" th:field="*{numero}"
+									th:errorclass="'form-control alert-danger'" /> <small
+									class="form-text text-danger"
+									th:if="${#fields.hasErrors('*{numero}')}" th:errors="*{numero}"></small>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label for="buscar_tipo_habitacion"
+								class="col-form-label col-sm-2 text-center font-weight-normal"
+								th:text="'Buscar Tipo Habitacion:'"></label>
+							<div class="col-sm-12">
+
+							<select  class="form-control" name="buscar_tipo_habitacion" id="buscar_tipo_habitacion">
+
+								<option th:each="entry : ${tipos}"
+									 th:value="${entry.id}"
+									 th:utext="${entry.nombre}">
+								</option>
+							</select>
+							</div>
+						</div>
+
+
+						<div class="form-group row">
+							<div class="col-sm-6">
+								<input type="submit" th:value="${txtbtn}"
+									class="btn btn-primary" />
+							</div>
+						</div>
+
+					</form>
 				</div>
-
-
-
-
-
-				<form th:action="@{/habitacion/crear}" th:object="${habitacion}"
-					method="post">
-
-
-					<div class="form-group row">
-						<label class="col-sm-2 col-form-label">Numero Habitacion</label>
-						<div class="col-sm-6">
-							<input type="number" class="form-control" th:field="*{numero}"
-								th:errorclass="'form-control alert-danger'" /> <small
-								class="form-text text-danger"
-								th:if="${#fields.hasErrors('*{numero}')}" th:errors="*{numero}"></small>
-						</div>
-					</div>
-
-					<div class="form-group">
-						<label for="buscar_tipo_habitacion"
-							class="col-form-label col-sm-2 text-center font-weight-normal"
-							th:text="'Buscar Tipo Habitacion:'"></label>
-						<div class="col-sm-12">
-							
-						<select  class="form-control" name="buscar_tipo_habitacion" id="buscar_tipo_habitacion">
-
-							<option th:each="entry : ${tipos}"
-                                 th:value="${entry.id}"
-                                 th:utext="${entry.nombre}">
-                         	</option>
-						</select>
-						</div>
-					</div>
-
-
-					<div class="form-group row">
-						<div class="col-sm-6">
-							<input type="submit" value="Guardar Habitacion"
-								class="btn btn-primary" />
-						</div>
-					</div>
-
-				</form>
 			</div>
 		</div>
-	</div>
+	</main>
 	<footer th:replace="layout/layout :: footer"></footer>
 	<script
 		th:replace="habitacion/js/autocomplete-tipo_habitacion :: javascript"></script>

@@ -1,5 +1,6 @@
 package com.bolsadeideas.springboot.di.app.models.services;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,6 +49,12 @@ public class HabitacionServicesImple  implements IHabitacionServices{
 	public List<TipoHabitacion> findByNombre(String nombre){
 		return precioDao.findByNombre(nombre);
 	}
+
+	@Transactional(readOnly = true)
+	public List<Habitacion> findHabitacionDisponible(Date inicio, Date fin){
+		return habitacionDao.findHabitacionDisponible(inicio, fin);
+	}
+
 	@Transactional
 	public void saveTipoHabitacion(TipoHabitacion tipoHabitacion) {
 		precioDao.save(tipoHabitacion);

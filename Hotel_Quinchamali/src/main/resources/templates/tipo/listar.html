@@ -4,47 +4,68 @@
 <body>
 
 	<header th:replace="layout/layout :: header"></header>
-
-	<div class="container py-4">
-
-
-		<div class="card bg-light">
-			<div class="card-header" th:text="${titulo}"></div>
-			<div class="card-body">
-				<h4 class="card-title">
-					<a th:href="@{/tipo/crear}" class="btn btn-primary">Crear Tipo</a>
-				</h4>
+	<main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+		<div th:replace="layout/layout :: alerts"></div>
+		<div class="py-4">
 
 
-
-				<table class="table table-striped">
-					<thead>
-						<tr>
-							<th>Tipo Habitacion</th>
-							<th>Precio Habitacion</th>
-							<th>Editar</th>
-							<th>Eliminar</th> 
+			<div class="card bg-light">
+				<div class="card-header" th:text="${titulo}"></div>
+				<div class="card-body">
+					<h4 class="card-title">
+						<a th:href="@{/admin/tipo/crear}" class="btn btn-primary">Crear Tipo</a>
+					</h4>
 
 
-						</tr>
-					</thead>
-					<tbody>
-						<tr th:each="tipo: ${tipos}">
-							<td th:text="${tipo.nombre}"></td>
-							<td th:text="${tipo.precio}"></td>
-							<td><a class="btn btn-primary btn-sm"
-								th:href="@{/tipo/editar/} + ${tipo.id}" th:text="'Editar'"></a></td>
-								
-								<td><a class="btn btn-danger btn-sm"
-								th:href="@{/tipo/eliminar/} + ${tipo.id}" th:text="'eliminar'"
-								onclick="return confirm('Estás seguro que quieres eliminar?');"></a></td>
-					</tbody>
 
-				</table>
-				<nav th:replace="paginator-nav :: paginator"></nav>
+					<table id="listaritem" class="table table-striped table-bordered" style="width:100%">
+						<thead>
+							<tr>
+								<th>Tipo Habitacion</th>
+								<th>Precio Habitacion</th>
+								<th>Editar</th>
+								<th>Eliminar</th>
+
+
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="tipo: ${tipos}">
+								<td th:text="${tipo.nombre}"></td>
+								<td th:text="${tipo.precio}"></td>
+								<td><a class="btn btn-primary btn-sm"
+									th:href="@{/admin/tipo/editar/} + ${tipo.id}" th:text="'Editar'"></a></td>
+
+								<td><a class="btn btn-danger btn-sm" style="color:#ffffff;"
+									   th:text="'Eliminar'"
+									   th:onclick="'showModal(\'' + @{/admin/tipo/eliminar/} + ${tipo.id} + '\');'"></a>
+								</td>
+						</tbody>
+
+					</table>
+					<!-- <nav th:replace="paginator-nav :: paginator"></nav>-->
+				</div>
 			</div>
 		</div>
-	</div>
+	</main>
+	<div th:replace="layout/layout :: modaldelete"></div>
 	<footer th:replace="layout/layout :: footer"></footer>
+	<script>
+		$(document).ready( function () {
+			$('#listaritem').DataTable({
+				"language": {
+					"url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
+				}
+			});
+		} );
+
+		function showModal(url){
+			$("#titlemodal").html("Eliminar Reserva");
+			$("#textmodal").html("Â¿Realmente desea eliminar esta reserva?");
+			$("#btndelete").attr("href", url);
+			$("#modal_delete").modal('show');
+		}
+
+	</script>
 </body>
 </html>

@@ -4,15 +4,16 @@
 <body>
 
 	<header th:replace="layout/layout :: header"></header>
-
-	<div class="container py-4">
+	<main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+		<div th:replace="layout/layout :: alerts"></div>
+		<div class="py-4">
 
 		<div class="card bg-light text-black">
 			<div class="card-header" th:text="${titulo}"></div>
 			<div class="card-body">
 				<h4 class="card-title">
 					<a class="btn btn-success btn-sm"
-						th:href="@{/reserva/crear/} + ${cliente.id}" th:text="'Reservar'"></a>
+						th:href="@{/admin/reserva/crear/} + ${cliente.id}" th:text="'Reservar'"></a>
 				</h4>
 
 				<ul class="list-group">
@@ -69,7 +70,7 @@
 							<td th:text="${reserva.descripcion}"></td>
 							<td th:text="${reserva.cantidadHabitaciones}"></td>
 							<td><a class="btn btn-success btn-sm"
-								th:href="@{/habitacion/form/} + ${reserva.id}" th:text="'Escoger'"></a></td>
+								th:href="@{/admin/habitacion/form/} + ${reserva.id}" th:text="'Escoger'"></a></td>
 							
 						</tr>
 					</tbody>
@@ -78,6 +79,7 @@
 			</div>
 		</div>
 	</div>
+	</main>
 	<footer th:replace="layout/layout :: footer"></footer>
 </body>
 </html>

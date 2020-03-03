@@ -21,7 +21,6 @@ public class TipoPago implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long Id;
-	private int numeroPago;
 	@NotNull
 	private String nombre;
 
@@ -38,14 +37,6 @@ public class TipoPago implements Serializable {
 
 	public void setId(Long id) {
 		Id = id;
-	}
-
-	public int getNumeroPago() {
-		return numeroPago;
-	}
-
-	public void setNumeroPago(int numeroPago) {
-		this.numeroPago = numeroPago;
 	}
 
 	public String getNombre() {

@@ -1,5 +1,6 @@
 package com.bolsadeideas.springboot.di.app.controllers;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.validation.Valid;
@@ -23,7 +24,7 @@ import com.bolsadeideas.springboot.di.app.models.services.IPrecioServices;
 import com.bolsadeideas.springboot.di.app.paginator.PageRender;
 
 @Controller
-@RequestMapping("/tipo")
+@RequestMapping("/admin/tipo")
 @SessionAttributes("tipo")
 public class PrecioController {
 	
@@ -32,12 +33,9 @@ public class PrecioController {
 	
 	@RequestMapping(value = { "/listar"}, method = RequestMethod.GET)
 	public String listar(@RequestParam(name = "page", defaultValue = "0") int page, Model model) {
-		Pageable paginacion = PageRequest.of(page, 37);
-		Page<TipoHabitacion> tipo = precioService.findAll(paginacion);
-		PageRender<TipoHabitacion> pageRender = new PageRender<>("/tipo/listar", tipo);
+		List<TipoHabitacion> tipo = precioService.findAll();
 		model.addAttribute("titulo", "Listado de tipo y precios de habitaciones");
 		model.addAttribute("tipos", tipo);
-		model.addAttribute("page", pageRender);
 		return "tipo/listar";
 	}
 	
@@ -47,7 +45,8 @@ public class PrecioController {
 
 		TipoHabitacion tipo = new TipoHabitacion();
 		model.put("tipo", tipo);
-		model.put("titulo", "Formulario de Tipo Habitacion");
+		model.put("titulo", "Formulario de Tipo de Habitación");
+		model.put("txtbtn", "Crear Tipo de Habitación");
 		return "tipo/form";
 	}
 	
@@ -62,7 +61,8 @@ public class PrecioController {
 
 		}
 		model.addAttribute("tipo",tipo);
-		model.addAttribute("titulo", "Editar Tipo Habitacion");
+		model.addAttribute("titulo", "Editar Tipo de Habitación");
+		model.addAttribute("txtbtn", "Editar Tipo de Habitación");
 		return "tipo/form";
 	}
 
@@ -70,10 +70,10 @@ public class PrecioController {
 	public String guardar(@Valid TipoHabitacion tipo, BindingResult result, Model model, SessionStatus status,
 			RedirectAttributes flash) {
 		if (result.hasErrors()) {
-			model.addAttribute("titulo", "Formulario de Tipo Habitacion");
+			model.addAttribute("titulo", "Formulario de Tipo de Habitación");
 			return "tipo/form";
 		}
-		String mensajeFlash = (tipo.getId() != null) ? "Tipo editado con exito" : "Tipo creado con exito";
+		String mensajeFlash = (tipo.getId() != null) ? "Tipo editado con éxito" : "Tipo creado con éxito";
 		precioService.save(tipo);
 		status.setComplete();
 		flash.addFlashAttribute("success", mensajeFlash);
@@ -83,7 +83,7 @@ public class PrecioController {
 	public String eliminar(@PathVariable(value = "id") Long id, RedirectAttributes flash) {
 		if (id > 0) {
 			precioService.deleted(id);
-			flash.addFlashAttribute("success", "Tipo eliminado con exito");
+			flash.addFlashAttribute("success", "Tipo eliminado con éxito");
 		}
 		return "redirect:/tipo/listar";
 	}

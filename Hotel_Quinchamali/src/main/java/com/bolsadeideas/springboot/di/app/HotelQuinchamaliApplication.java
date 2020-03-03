@@ -10,4 +10,5 @@ public class HotelQuinchamaliApplication {
 		SpringApplication.run(HotelQuinchamaliApplication.class, args);
 	}
 
+
 }
