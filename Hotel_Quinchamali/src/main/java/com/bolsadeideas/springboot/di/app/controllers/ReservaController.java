@@ -108,6 +108,12 @@ public class ReservaController {
 		if(habitacionesDisponibles.size() == 0 && ((List<ReservaHabitacion>) reservaHbServices.findAll()).size() == 0){
 			habitacionesDisponibles = habitacionServices.findAll();
 		}
+
+		/*if(reserva.getHabitaciones().isEmpty() && reserva.getCantidadHabitaciones() > 0){
+			for(int i = 0; i < reserva.getCantidadHabitaciones(); i++){
+
+			}
+		}else if(reserva.getHabitaciones().isEmpty())*/
 		model.addAttribute("reserva", reserva);
 		model.addAttribute("hbdisponible", habitacionesDisponibles);
 		model.addAttribute("titulo", "Registrar Habitaciones y Huesped");

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head th:fragment="head">
     <meta charset="UTF-8"/>
     <title
@@ -32,8 +32,8 @@
     <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
         <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">Hotel Quinchamali</a>
         <ul class="navbar-nav px-3">
-            <li class="nav-item text-nowrap">
-                <a class="nav-link" th:href="@{/signout}">Cerrar Sesión</a>
+            <li class="nav-item text-nowrap" sec:authorize="isAuthenticated()">
+                <a class="nav-link" th:href="@{/signout}">Cerrar Sesión (<span sec:authentication="principal.authorities"></span>)</a>
             </li>
         </ul>
     </nav>
@@ -43,19 +43,19 @@
             <nav class="col-md-2 d-none d-md-block bg-light sidebar">
                 <div class="sidebar-sticky">
                     <ul class="nav flex-column">
-                        <li class="nav-item"><a class="nav-link" th:href="@{/admin/}">Inicio</a>
+                        <li sec:authorize="hasAnyRole('ADMIN','USUARIO','RECEPCIONISTA')" class="nav-item"><a class="nav-link" th:href="@{/admin/}">Inicio</a>
                         </li>
-                        <li class="nav-item"><a class="nav-link" th:href="@{/admin/cliente/listar}">Clientes</a>
+                        <li sec:authorize="hasAnyRole('ADMIN','USUARIO','RECEPCIONISTA')" class="nav-item"><a class="nav-link" th:href="@{/admin/cliente/listar}">Clientes</a>
                         </li>
-                        <li class="nav-item"><a class="nav-link" th:href="@{/admin/reserva/listar}">Reservas</a>
+                        <li sec:authorize="hasAnyRole('ADMIN','USUARIO','RECEPCIONISTA')" class="nav-item"><a class="nav-link" th:href="@{/admin/reserva/listar}">Reservas</a>
                         </li>
-                        <li class="nav-item"><a class="nav-link" th:href="@{/admin/habitacion/listar}">Habitaciones</a>
+                        <li sec:authorize="hasAnyRole('ADMIN')" class="nav-item"><a class="nav-link" th:href="@{/admin/habitacion/listar}">Habitaciones</a>
                         </li>
-                        <li class="nav-item"><a class="nav-link" th:href="@{/admin/tipo/listar}">Precios y Tipo</a>
+                        <li sec:authorize="hasAnyRole('ADMIN')" class="nav-item"><a class="nav-link" th:href="@{/admin/tipo/listar}">Precios y Tipo</a>
                         </li>
-                        <li class="nav-item"><a class="nav-link" th:href="@{/admin/estado/listar}">Estados</a>
+                        <li sec:authorize="hasAnyRole('ADMIN')" class="nav-item"><a class="nav-link" th:href="@{/admin/estado/listar}">Estados</a>
                         </li>
-                        <li class="nav-item"><a class="nav-link" th:href="@{/admin/tipopago/listar}">Tipo de Pago</a>
+                        <li sec:authorize="hasAnyRole('ADMIN')" class="nav-item"><a class="nav-link" th:href="@{/admin/tipopago/listar}">Tipo de Pago</a>
                         </li>
                     </ul>
                 </div>

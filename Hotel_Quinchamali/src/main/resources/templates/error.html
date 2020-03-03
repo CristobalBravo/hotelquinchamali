@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head"></head>
+<body>
+
+<header th:replace="layout/layout :: header"></header>
+
+<main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+    <div th:replace="layout/layout :: alerts"></div>
+    <div class="py-4">
+        <h1>No tiene autorización para ingresar a esta ruta</h1>
+        <h3><a href="/admin/">Ir al Home</a></h3>
+        <br/>
+        <img th:src="@{/images/hotel_quinchamali.jpg}" alt="Spring logo"/>
+
+    </div>
+</main>
+<footer th:replace="layout/layout :: footer"></footer>
+
+</body>
+</html>
