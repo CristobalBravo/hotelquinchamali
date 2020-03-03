@@ -17,6 +17,7 @@
 
 				<form th:action="@{/tipo/crear}" th:object="${tipo}"
 						method="post">
+						<input type="hidden" th:field="*{id}" />
 						<div class="form-group row">
 							<label class="col-sm-2 col-form-label">Tipo Habitacion</label>
 							<div class="col-sm-6">

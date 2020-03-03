@@ -33,6 +33,7 @@ public class EstadoReservaController {
 
 		EstadoReserva estadoReserva = new EstadoReserva();
 		model.put("estadoReserva", estadoReserva);
+		model.put("txtbtn", "Crear Estado");
 		model.put("titulo", "Formulario de Estados de Reserva");
 		return "estado/form";
 		
@@ -53,7 +54,7 @@ public class EstadoReservaController {
 			model.addAttribute("titulo", "Formulario de Estado");
 			return "estado/form";
 		}
-		String mensajeFlash = (estado.getId() != null) ? "cliente editado con exito" : "cliente creado con exito";
+		String mensajeFlash = (estado.getId() != null) ? "Estado editado con éxito" : "Estado creado con éxito";
 
 		estadoReservaServices.save(estado);
 		status.setComplete();
@@ -72,6 +73,7 @@ public class EstadoReservaController {
 
 		}
 		model.addAttribute("estadoReserva", estado);
+		model.addAttribute("txtbtn", "Editar Estado");
 		model.addAttribute("titulo", "Editar Estado");
 		return "estado/form";
 	}

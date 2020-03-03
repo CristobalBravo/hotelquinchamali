@@ -1,7 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5f05d48a-5362-4232-99b0-48feff1af94e" name="Default Changelist" comment="" />
+    <list default="true" id="5f05d48a-5362-4232-99b0-48feff1af94e" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bolsadeideas/springboot/di/app/HotelQuinchamaliApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bolsadeideas/springboot/di/app/HotelQuinchamaliApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bolsadeideas/springboot/di/app/WebSecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bolsadeideas/springboot/di/app/WebSecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bolsadeideas/springboot/di/app/controllers/ClienteController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bolsadeideas/springboot/di/app/controllers/ClienteController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bolsadeideas/springboot/di/app/controllers/EstadoReservaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bolsadeideas/springboot/di/app/controllers/EstadoReservaController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bolsadeideas/springboot/di/app/controllers/HabitacionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bolsadeideas/springboot/di/app/controllers/HabitacionController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bolsadeideas/springboot/di/app/controllers/HomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bolsadeideas/springboot/di/app/controllers/HomeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bolsadeideas/springboot/di/app/controllers/PrecioController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bolsadeideas/springboot/di/app/controllers/PrecioController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bolsadeideas/springboot/di/app/controllers/ReservaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bolsadeideas/springboot/di/app/controllers/ReservaController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bolsadeideas/springboot/di/app/models/entity/TipoPago.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bolsadeideas/springboot/di/app/models/entity/TipoPago.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bolsadeideas/springboot/di/app/paginator/PageRender.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bolsadeideas/springboot/di/app/paginator/pageItem.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/estado/form.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/estado/form.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/layout/layout.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/layout/layout.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/reserva/form.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/reserva/form.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/tipo/form.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/tipo/form.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/bolsadeideas/springboot/di/app/HotelQuinchamaliApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/bolsadeideas/springboot/di/app/HotelQuinchamaliApplication.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/bolsadeideas/springboot/di/app/controllers/ClienteController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/bolsadeideas/springboot/di/app/controllers/ClienteController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/bolsadeideas/springboot/di/app/models/dao/IClienteDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/bolsadeideas/springboot/di/app/models/dao/IClienteDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/bolsadeideas/springboot/di/app/models/entity/Cliente.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/bolsadeideas/springboot/di/app/models/entity/Cliente.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/bolsadeideas/springboot/di/app/models/entity/EstadoReserva.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/bolsadeideas/springboot/di/app/models/entity/EstadoReserva.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/bolsadeideas/springboot/di/app/models/entity/Habitacion.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/bolsadeideas/springboot/di/app/models/entity/Habitacion.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/bolsadeideas/springboot/di/app/models/entity/Huesped.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/bolsadeideas/springboot/di/app/models/entity/Huesped.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/bolsadeideas/springboot/di/app/models/entity/Reserva.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/bolsadeideas/springboot/di/app/models/entity/Reserva.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/bolsadeideas/springboot/di/app/models/entity/TipoPago.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/bolsadeideas/springboot/di/app/models/entity/TipoPago.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/bolsadeideas/springboot/di/app/models/entity/Venta.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/bolsadeideas/springboot/di/app/models/entity/Venta.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/bolsadeideas/springboot/di/app/models/services/ClienteServiceImple.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/bolsadeideas/springboot/di/app/models/services/ClienteServiceImple.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/bolsadeideas/springboot/di/app/models/services/IClienteServicies.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/bolsadeideas/springboot/di/app/models/services/IClienteServicies.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/bolsadeideas/springboot/di/app/paginator/PageRender.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/bolsadeideas/springboot/di/app/paginator/pageItem.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/messages.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/messages.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/css/bootstrap.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/css/bootstrap.min.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/images/spring-boot.png" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/images/spring-boot.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/js/bootstrap.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/js/bootstrap.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/js/jquery-3.3.1.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/js/jquery-3.3.1.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/js/popper.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/js/popper.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/layout/layout.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/layout/layout.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/com/bolsadeideas/springboot/di/app/HotelQuinchamaliApplicationTests.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/bolsadeideas/springboot/di/app/HotelQuinchamaliApplicationTests.class" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -11,10 +52,13 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="HTML File" />
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="MavenImportPreferences">
     <option name="importingSettings">
@@ -24,6 +68,7 @@
     </option>
   </component>
   <component name="ProjectId" id="1QtPOW3Qo7ne8qmnxHgVP2t6AjX" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
@@ -60,29 +105,38 @@
       <screen x="0" y="23" width="1920" height="1177" />
     </state>
     <state x="560" y="276" key="#Project_Structure/0.23.1920.1177@0.23.1920.1177" timestamp="1582204531711" />
-    <state x="773" y="291" key="#com.intellij.ide.util.MemberChooser" timestamp="1582676579934">
-      <screen x="0" y="0" width="1920" height="1200" />
+    <state x="580" y="218" key="#com.intellij.ide.util.MemberChooser" timestamp="1583253064887">
+      <screen x="0" y="0" width="1440" height="900" />
     </state>
+    <state x="580" y="218" key="#com.intellij.ide.util.MemberChooser/0.0.1440.900@0.0.1440.900" timestamp="1583253064887" />
     <state x="773" y="291" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1200@0.0.1920.1200" timestamp="1582676579934" />
-    <state width="1878" height="237" key="GridCell.Tab.0.bottom" timestamp="1582744166210">
-      <screen x="0" y="0" width="1920" height="1200" />
+    <state width="1398" height="62" key="GridCell.Tab.0.bottom" timestamp="1583257470503">
+      <screen x="0" y="0" width="1440" height="900" />
     </state>
+    <state width="1398" height="62" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1583257470503" />
     <state width="1878" height="237" key="GridCell.Tab.0.bottom/0.0.1920.1200@0.0.1920.1200" timestamp="1582744166210" />
+    <state width="1398" height="324" key="GridCell.Tab.0.bottom/0.23.1440.801@0.23.1440.801" timestamp="1583255711650" />
     <state width="1878" height="344" key="GridCell.Tab.0.bottom/0.23.1920.1177@0.23.1920.1177" timestamp="1582245788177" />
-    <state width="1878" height="237" key="GridCell.Tab.0.center" timestamp="1582744166209">
-      <screen x="0" y="0" width="1920" height="1200" />
+    <state width="1398" height="62" key="GridCell.Tab.0.center" timestamp="1583257470501">
+      <screen x="0" y="0" width="1440" height="900" />
     </state>
+    <state width="1398" height="62" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1583257470501" />
     <state width="1878" height="237" key="GridCell.Tab.0.center/0.0.1920.1200@0.0.1920.1200" timestamp="1582744166209" />
+    <state width="1398" height="324" key="GridCell.Tab.0.center/0.23.1440.801@0.23.1440.801" timestamp="1583255711649" />
     <state width="1878" height="344" key="GridCell.Tab.0.center/0.23.1920.1177@0.23.1920.1177" timestamp="1582245788176" />
-    <state width="1878" height="237" key="GridCell.Tab.0.left" timestamp="1582744166209">
-      <screen x="0" y="0" width="1920" height="1200" />
+    <state width="1398" height="62" key="GridCell.Tab.0.left" timestamp="1583257470501">
+      <screen x="0" y="0" width="1440" height="900" />
     </state>
+    <state width="1398" height="62" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1583257470501" />
     <state width="1878" height="237" key="GridCell.Tab.0.left/0.0.1920.1200@0.0.1920.1200" timestamp="1582744166209" />
+    <state width="1398" height="324" key="GridCell.Tab.0.left/0.23.1440.801@0.23.1440.801" timestamp="1583255711648" />
     <state width="1878" height="344" key="GridCell.Tab.0.left/0.23.1920.1177@0.23.1920.1177" timestamp="1582245788175" />
-    <state width="1878" height="237" key="GridCell.Tab.0.right" timestamp="1582744166210">
-      <screen x="0" y="0" width="1920" height="1200" />
+    <state width="1398" height="62" key="GridCell.Tab.0.right" timestamp="1583257470502">
+      <screen x="0" y="0" width="1440" height="900" />
     </state>
+    <state width="1398" height="62" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1583257470502" />
     <state width="1878" height="237" key="GridCell.Tab.0.right/0.0.1920.1200@0.0.1920.1200" timestamp="1582744166210" />
+    <state width="1398" height="324" key="GridCell.Tab.0.right/0.23.1440.801@0.23.1440.801" timestamp="1583255711650" />
     <state width="1878" height="344" key="GridCell.Tab.0.right/0.23.1920.1177@0.23.1920.1177" timestamp="1582245788177" />
     <state x="637" y="443" key="com.intellij.ide.util.TipDialog" timestamp="1582204468884">
       <screen x="0" y="23" width="1920" height="1177" />

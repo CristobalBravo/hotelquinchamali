@@ -4,28 +4,7 @@
 <body>
 
 	<header th:replace="layout/layout :: header"></header>
-	
-	<script>
-		function showRooms() {
-			//Se captura la cantidad de habitaciones
-			var cant = $("#cant_h").val();
-			
-			//Se limpia el div
-			$('#div_selects').empty();
-			
-			
-			//se cargan los select dinamicamente
-			for(var i=0; i<cant; i++) {
-				//Se captura el select oculto
-				var select = $('#buscar_tipo_habitacion').clone().addClass("selectVisible");
-				
-				//Se inyecta
-				$('#div_selects').append(select);
-			}
-			$(".selectVisible").css( "display", "block" );
-			
-		}
-	</script>
+
 	<main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
 		<div th:replace="layout/layout :: alerts"></div>
 		<div class="py-4">
@@ -42,6 +21,7 @@
 
 					<form th:action="@{/admin/reserva/crear/}" th:object="${reserva}"
 						method="post">
+						<input type="hidden" th:field="*{id}" />
 						<div class="form-group row">
 							<label class="col-sm-2 col-form-label">Cliente</label>
 							<div class="col-sm-6">
@@ -105,8 +85,7 @@
 									 th:utext="${tipo.nombre}">
 								</option>
 							</select>
-						<div id="div_selects" class="form-group row">
-						</div>
+
 
 						<div class="form-group row">
 							<div class="col-sm-6">
