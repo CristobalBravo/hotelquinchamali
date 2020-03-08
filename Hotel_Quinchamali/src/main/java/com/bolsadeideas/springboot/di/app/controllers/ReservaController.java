@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.util.Date;
 import java.util.List;
@@ -34,6 +35,8 @@ public class ReservaController {
 	private IHabitacionServices habitacionServices;
 	@Autowired
 	private IReservaHabitacionDao reservaHbServices;
+	@Autowired
+	private IHuespedServices huespedServices;
 	
 	
 	@GetMapping("/crear/{clienteid}")
@@ -92,7 +95,7 @@ public class ReservaController {
 		return "reserva/form";
 	}
 
-	@RequestMapping(value = "/registrarhb/{id}")
+	@RequestMapping(value = "/registrarhb/{id}", method = RequestMethod.GET)
 	public String registrarHb(@PathVariable(value = "id") Long id, Model model, RedirectAttributes flash) {
 		Reserva reserva = null;
 		if (id > 0) {
@@ -105,24 +108,33 @@ public class ReservaController {
 
 		List<Habitacion> habitacionesDisponibles = habitacionServices.findHabitacionDisponible(reserva.getCheckIn(),reserva.getCheckOut());
 
-		if(habitacionesDisponibles.size() == 0 && ((List<ReservaHabitacion>) reservaHbServices.findAll()).size() == 0){
+		if(habitacionesDisponibles.size() == 0 || ((List<ReservaHabitacion>) reservaHbServices.findAll()).size() == 0){
 			habitacionesDisponibles = habitacionServices.findAll();
 		}
 
-		/*if(reserva.getHabitaciones().isEmpty() && reserva.getCantidadHabitaciones() > 0){
-			for(int i = 0; i < reserva.getCantidadHabitaciones(); i++){
-
+		if(reserva.getHabitaciones().isEmpty()){
+			for (int i = 0; i < reserva.getCantidadHabitaciones(); i++){
+				ReservaHabitacion hb = new ReservaHabitacion();
+				hb.setReserva(reserva);
+				hb.setCheck_in(reserva.getCheckIn());
+				hb.setCheck_out(reserva.getCheckOut());
+				reservaHbServices.save(hb);
 			}
-		}else if(reserva.getHabitaciones().isEmpty())*/
+		}
+
+		reserva = reservaServices.finOne(id);
+
 		model.addAttribute("reserva", reserva);
+		model.addAttribute("hbreservadas", reserva.getHabitaciones());
 		model.addAttribute("hbdisponible", habitacionesDisponibles);
 		model.addAttribute("titulo", "Registrar Habitaciones y Huesped");
 		return "reserva/registrarhb";
 	}
 
-	@RequestMapping(value = "/registrarhb/save/{id}")
-	public String registrarSaveHb(@PathVariable(value = "id") Long id, Model model, RedirectAttributes flash) {
+	@RequestMapping(value = "/registrarhb/save/{id}", method = RequestMethod.POST)
+	public String registrarSaveHb(@PathVariable(value = "id") Long id, Model model, HttpServletRequest httpRequest, RedirectAttributes flash) {
 		Reserva reserva = null;
+
 		if (id > 0) {
 			reserva = reservaServices.finOne(id);
 		} else {
@@ -130,8 +142,18 @@ public class ReservaController {
 			return "redirect:/admin/reserva/listar";
 
 		}
+
+		for (int i = 0; i < reserva.getCantidadHabitaciones(); i++){
+			Huesped huesped = new Huesped();
+			huesped.setCi(httpRequest.getParameter("ci"+i));
+			huesped.setNombreCompleto(httpRequest.getParameter("nombre"+i));
+			huespedServices.save(huesped);
+
+		}
+
 		model.addAttribute("reserva", reserva);
 		model.addAttribute("titulo", "Registrar Habitaciones y Huesped");
+
 		return "reserva/registrarhb";
 	}
 	

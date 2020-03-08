@@ -5,6 +5,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 public class ReservaHabitacion {
@@ -17,6 +18,9 @@ public class ReservaHabitacion {
 
     @Column(name = "habitacion_id", insertable = false, updatable = false)
     private Long habitacionId;
+
+    @OneToMany(mappedBy = "reservaHabitacion", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<Huesped> huespedes;
 
     @ManyToOne
     @JoinColumn(name = "reserva_id")
@@ -60,6 +64,14 @@ public class ReservaHabitacion {
 
     public void setHabitacion(Habitacion habitacion) {
         this.habitacion = habitacion;
+    }
+
+    public List<Huesped> getHuespedes() {
+        return huespedes;
+    }
+
+    public void setHuespedes(List<Huesped> huespedes) {
+        this.huespedes = huespedes;
     }
 
     public Date getCheck_in() {

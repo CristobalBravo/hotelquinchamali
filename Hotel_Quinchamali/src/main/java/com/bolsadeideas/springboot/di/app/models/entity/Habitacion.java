@@ -14,18 +14,12 @@ public class Habitacion implements Serializable {
 	private Long id;
 	private int numero;
 
-	@OneToMany(mappedBy = "habitacion", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	private List<Huesped> huespedes;
-
 	@ManyToOne(fetch = FetchType.LAZY)
 	private TipoHabitacion tipoHabitacion;
 
 	@OneToMany(mappedBy = "habitacion")
 	private List<ReservaHabitacion> reservas;
 
-	public Habitacion() {
-		huespedes = new ArrayList<Huesped>();
-	}
 
 	public Long getId() {
 		return id;
@@ -51,16 +45,6 @@ public class Habitacion implements Serializable {
 		this.reservas = reservas;
 	}
 
-	public List<Huesped> getHuespedes() {
-		return huespedes;
-	}
-
-	public void setHuespedes(List<Huesped> huespedes) {
-		this.huespedes = huespedes;
-	}
-	public void addHuesped(Huesped huesped) {
-		huespedes.add(huesped);
-	}
 	
 	public TipoHabitacion getTipoHabitacion() {
 		return tipoHabitacion;

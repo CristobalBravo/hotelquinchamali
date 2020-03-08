@@ -3,26 +3,37 @@
   <component name="ChangeListManager">
     <list default="true" id="5f05d48a-5362-4232-99b0-48feff1af94e" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Hotel_Quinchamali.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Hotel_Quinchamali.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/bolsadeideas/springboot/di/app/WebSecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bolsadeideas/springboot/di/app/WebSecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bolsadeideas/springboot/di/app/controllers/AdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bolsadeideas/springboot/di/app/controllers/AdminController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bolsadeideas/springboot/di/app/controllers/HomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bolsadeideas/springboot/di/app/controllers/HomeController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/bolsadeideas/springboot/di/app/controllers/ReservaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bolsadeideas/springboot/di/app/controllers/ReservaController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bolsadeideas/springboot/di/app/models/entity/Habitacion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bolsadeideas/springboot/di/app/models/entity/Habitacion.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bolsadeideas/springboot/di/app/models/entity/Huesped.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bolsadeideas/springboot/di/app/models/entity/Huesped.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bolsadeideas/springboot/di/app/models/entity/ReservaHabitacion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bolsadeideas/springboot/di/app/models/entity/ReservaHabitacion.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/cliente/listar.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/cliente/listar.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/error.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/error.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/estado/listar.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/estado/listar.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/habitacion/form.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/habitacion/form.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/habitacion/listar.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/habitacion/listar.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/layout/layout.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/layout/layout.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/layout/layout.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/layout/layout.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/reserva/listar.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/reserva/listar.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/reserva/registrarhb.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/reserva/registrarhb.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/tipo/form.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/tipo/form.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/tipo/listar.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/tipo/listar.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/tipopago/listar.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/tipopago/listar.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FavoritesManager">
+    <favorites_list name="Hotel_Quinchamali" />
+  </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Interface" />
         <option value="Class" />
         <option value="HTML File" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -74,42 +85,46 @@
       <screen x="0" y="23" width="1920" height="1177" />
     </state>
     <state x="560" y="276" key="#Project_Structure/0.23.1920.1177@0.23.1920.1177" timestamp="1582204531711" />
-    <state x="580" y="218" key="#com.intellij.ide.util.MemberChooser" timestamp="1583253064887">
+    <state x="580" y="218" key="#com.intellij.ide.util.MemberChooser" timestamp="1583599158770">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="580" y="218" key="#com.intellij.ide.util.MemberChooser/0.0.1440.900@0.0.1440.900" timestamp="1583253064887" />
+    <state x="580" y="218" key="#com.intellij.ide.util.MemberChooser/0.0.1440.900@0.0.1440.900" timestamp="1583599158770" />
     <state x="773" y="291" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1200@0.0.1920.1200" timestamp="1582676579934" />
-    <state width="1398" height="197" key="GridCell.Tab.0.bottom" timestamp="1583260878988">
+    <state width="1398" height="196" key="GridCell.Tab.0.bottom" timestamp="1583690893922">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="197" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1583260878988" />
+    <state width="1398" height="196" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1583690893922" />
     <state width="1878" height="237" key="GridCell.Tab.0.bottom/0.0.1920.1200@0.0.1920.1200" timestamp="1582744166210" />
-    <state width="1398" height="324" key="GridCell.Tab.0.bottom/0.23.1440.801@0.23.1440.801" timestamp="1583255711650" />
+    <state width="1398" height="197" key="GridCell.Tab.0.bottom/0.23.1440.801@0.23.1440.801" timestamp="1583333820832" />
     <state width="1878" height="344" key="GridCell.Tab.0.bottom/0.23.1920.1177@0.23.1920.1177" timestamp="1582245788177" />
-    <state width="1398" height="197" key="GridCell.Tab.0.center" timestamp="1583260878986">
+    <state width="1398" height="196" key="GridCell.Tab.0.center" timestamp="1583690893921">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="197" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1583260878986" />
+    <state width="1398" height="196" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1583690893921" />
     <state width="1878" height="237" key="GridCell.Tab.0.center/0.0.1920.1200@0.0.1920.1200" timestamp="1582744166209" />
-    <state width="1398" height="324" key="GridCell.Tab.0.center/0.23.1440.801@0.23.1440.801" timestamp="1583255711649" />
+    <state width="1398" height="197" key="GridCell.Tab.0.center/0.23.1440.801@0.23.1440.801" timestamp="1583333820831" />
     <state width="1878" height="344" key="GridCell.Tab.0.center/0.23.1920.1177@0.23.1920.1177" timestamp="1582245788176" />
-    <state width="1398" height="197" key="GridCell.Tab.0.left" timestamp="1583260878986">
+    <state width="1398" height="196" key="GridCell.Tab.0.left" timestamp="1583690893920">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="197" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1583260878986" />
+    <state width="1398" height="196" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1583690893920" />
     <state width="1878" height="237" key="GridCell.Tab.0.left/0.0.1920.1200@0.0.1920.1200" timestamp="1582744166209" />
-    <state width="1398" height="324" key="GridCell.Tab.0.left/0.23.1440.801@0.23.1440.801" timestamp="1583255711648" />
+    <state width="1398" height="197" key="GridCell.Tab.0.left/0.23.1440.801@0.23.1440.801" timestamp="1583333820830" />
     <state width="1878" height="344" key="GridCell.Tab.0.left/0.23.1920.1177@0.23.1920.1177" timestamp="1582245788175" />
-    <state width="1398" height="197" key="GridCell.Tab.0.right" timestamp="1583260878987">
+    <state width="1398" height="196" key="GridCell.Tab.0.right" timestamp="1583690893921">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="197" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1583260878987" />
+    <state width="1398" height="196" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1583690893921" />
     <state width="1878" height="237" key="GridCell.Tab.0.right/0.0.1920.1200@0.0.1920.1200" timestamp="1582744166210" />
-    <state width="1398" height="324" key="GridCell.Tab.0.right/0.23.1440.801@0.23.1440.801" timestamp="1583255711650" />
+    <state width="1398" height="197" key="GridCell.Tab.0.right/0.23.1440.801@0.23.1440.801" timestamp="1583333820832" />
     <state width="1878" height="344" key="GridCell.Tab.0.right/0.23.1920.1177@0.23.1920.1177" timestamp="1582245788177" />
     <state x="637" y="443" key="com.intellij.ide.util.TipDialog" timestamp="1582204468884">
       <screen x="0" y="23" width="1920" height="1177" />
     </state>
     <state x="637" y="443" key="com.intellij.ide.util.TipDialog/0.23.1920.1177@0.23.1920.1177" timestamp="1582204468884" />
+    <state x="385" y="196" width="670" height="676" key="search.everywhere.popup" timestamp="1583598277383">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="385" y="196" width="670" height="676" key="search.everywhere.popup/0.0.1440.900@0.0.1440.900" timestamp="1583598277383" />
   </component>
 </project>

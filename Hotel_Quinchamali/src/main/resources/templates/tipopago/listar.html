@@ -48,7 +48,30 @@
 			$('#listaritem').DataTable({
 				"language": {
 					"url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
-				}
+				},
+				dom: 'Bfrtip',
+				buttons: [
+					{
+						extend: 'copy',
+						text: 'Copiar'
+					},
+					{
+						extend: 'csv',
+						text: 'Exportar CSV'
+					},
+					{
+						extend: 'excel',
+						text: 'Exportar a Excel'
+					},
+					{
+						extend: 'pdf',
+						text: 'Exportar a PDF'
+					},
+					{
+						extend: 'print',
+						text: 'Imprimir'
+					},
+				]
 			});
 		} );
 

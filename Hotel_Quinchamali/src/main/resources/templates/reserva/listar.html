@@ -17,10 +17,10 @@
 					<div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
 						<div class="btn-group mr-2" role="group" aria-label="First group">
 							<button type="button" class="btn btn-primary" onclick="filtrar('ACTIVA');">ACTIVA</button>
-							<button type="button" class="btn btn-secondary" onclick="filtrar('CONFIRMADA');">CONFIRMADA</button>
-							<button type="button" class="btn btn-primary" onclick="filtrar('PAGADA');">PAGADA</button>
-							<button type="button" class="btn btn-secondary" onclick="filtrar('FINALIZADA');">FINALIZADA</button>
-							<button type="button" class="btn btn-primary" onclick="filtrar('ELIMINADA');">ELIMINADA</button>
+							<button type="button" class="btn btn-success" onclick="filtrar('CONFIRMADA');">CONFIRMADA</button>
+							<button type="button" class="btn btn-danger" onclick="filtrar('PAGADA');">PAGADA</button>
+							<button type="button" class="btn btn-warning" onclick="filtrar('FINALIZADA');">FINALIZADA</button>
+							<button type="button" class="btn btn-info" onclick="filtrar('ELIMINADA');">ELIMINADA</button>
 						</div>
 					</div>
 					<br/>
@@ -90,7 +90,30 @@
 				"scrollX": true,
 				"language": {
 					"url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
-				}
+				},
+				dom: 'Bfrtip',
+				buttons: [
+					{
+						extend: 'copy',
+						text: 'Copiar'
+					},
+					{
+						extend: 'csv',
+						text: 'Exportar CSV'
+					},
+					{
+						extend: 'excel',
+						text: 'Exportar a Excel'
+					},
+					{
+						extend: 'pdf',
+						text: 'Exportar a PDF'
+					},
+					{
+						extend: 'print',
+						text: 'Imprimir'
+					},
+				]
 			});
 		} );
 

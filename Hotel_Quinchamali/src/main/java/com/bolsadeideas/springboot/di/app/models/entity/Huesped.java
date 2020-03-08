@@ -25,7 +25,7 @@ public class Huesped implements Serializable {
 	private String ci;
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	private Habitacion habitacion;
+	private ReservaHabitacion reservaHabitacion;
 
 	public Long getId() {
 		return id;
@@ -51,12 +51,12 @@ public class Huesped implements Serializable {
 		this.ci = ci;
 	}
 
-	public Habitacion getHabitacion() {
-		return habitacion;
+	public ReservaHabitacion getReservaHabitacion() {
+		return reservaHabitacion;
 	}
 
-	public void setHabitacion(Habitacion habitacion) {
-		this.habitacion = habitacion;
+	public void setReservaHabitacion(ReservaHabitacion reservaHabitacion) {
+		this.reservaHabitacion = reservaHabitacion;
 	}
 
 	public static long getSerialversionuid() {

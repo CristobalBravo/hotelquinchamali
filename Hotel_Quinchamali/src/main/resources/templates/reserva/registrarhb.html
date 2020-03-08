@@ -5,27 +5,6 @@
 
 <header th:replace="layout/layout :: header"></header>
 
-<script>
-		function showRooms() {
-			//Se captura la cantidad de habitaciones
-			var cant = $("#cant_h").val();
-
-			//Se limpia el div
-			$('#div_selects').empty();
-
-
-			//se cargan los select dinamicamente
-			for(var i=0; i<cant; i++) {
-				//Se captura el select oculto
-				var select = $('#buscar_tipo_habitacion').clone().addClass("selectVisible");
-
-				//Se inyecta
-				$('#div_selects').append(select);
-			}
-			$(".selectVisible").css( "display", "block" );
-
-		}
-</script>
 <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
     <div th:replace="layout/layout :: alerts"></div>
     <div class="py-4">
@@ -35,29 +14,36 @@
             <div class="card-body">
 
 
-                <form th:action="@{/admin/reserva/registrarhb/save/} + ${reserva.id}" method="post">
-                    <div th:if="${#lists.isEmpty(reserva.habitaciones)}">
-                        <div class="shadow-sm p-3 mb-5 bg-white rounded" th:each="i : ${#numbers.sequence(0,reserva.cantidadHabitaciones -1)}">
-                            <h5>Habitación <span th:text="${i + 1}"></span></h5>
-                            <div class="form-group">
-                                <label th:for="${'habitacion'+i}">Tipo de Habitación</label>
-                                <select type="text" class="form-control selectwo" th:id="${'habitacion'+i}" th:name="${'habitacion'+i}" placeholder="Tipo de Habitación">
-                                    <option th:value="${hb.id}" th:each="hb : ${hbdisponible}" th:text="${'Número '+hb.numero+' - Tipo: ' + hb.tipoHabitacion.nombre}"></option>
-                                </select>
+                <form th:action="@{/admin/reserva/registrarhb/save/} + ${reserva.id}" method="post" >
+
+                    <div class="shadow-sm p-3 mb-5 bg-white rounded" th:each="hb, iterStat : ${hbreservadas}" th:id="${'formhb'+hb.id}">
+                        <h5>Habitación <span th:text="${iterStat.count}"></span></h5>
+                        <div class="form-group">
+                            <label th:for="${'habitacion'+hb.id}">Tipo de Habitación</label>
+                            <select type="text" class="form-control selectwo" th:id="${'habitacion'+hb.id}" th:name="${'habitacion'+hb.id}" placeholder="Tipo de Habitación">
+                                <option th:value="${hbd.id}" th:each="hbd : ${hbdisponible}" th:text="${'Número '+hbd.numero+' - Tipo: ' + hbd.tipoHabitacion.nombre}"></option>
+                            </select>
+                        </div>
+                        <input type="hidden" th:value="${#lists.size(hb.huespedes)}" id="canthpd" name="canthpd">
+                        <div class="form-row">
+                            <a class="btn btn-success" style="color: white;" th:onclick="'agregarhuesped(\'formhb'+${hb.id}+'\');'">Agregar Huésped (+)</a>
+                        </div>
+                        <br/>
+                        <div class="form-row" th:each="hpd : ${hb.huespedes}">
+                            <div class="col-md-6 mb-3">
+                                <label th:for="${'nombre'+hpd.id}">Nombre Huésped</label>
+                                <input type="text" class="form-control" th:value="${hpd.nombre}" th:id="${'nombre'+hpd.id}" th:name="${'nombre'+hpd.id}" placeholder="Nombre Completo" required>
                             </div>
-                            <div class="form-row">
-                                <div class="col-md-8 mb-3">
-                                    <label th:for="${'nombre'+i}">Nombre Huésped</label>
-                                    <input type="text" class="form-control" th:id="${'nombre'+i}" th:name="${'nombre'+i}" placeholder="Nombre Completo" required>
-                                </div>
-                                <div class="col-md-4 mb-3">
-                                    <label th:for="${'ci'+i}">Nombre Huésped</label>
-                                    <input type="text" class="form-control" th:id="${'ci'+i}" th:name="${'ci'+i}" placeholder="Cédula de Identidad" required>
-                                </div>
+                            <div class="col-md-4 mb-3">
+                                <label th:for="${'ci'+i}">Nombre Huésped</label>
+                                <input type="text" class="form-control" th:value="${hpd.ci}" th:id="${'ci'+hpd.id}" th:name="${'ci'+hpd.id}" placeholder="Cédula de Identidad" required>
+                            </div>
+                            <div class="col-md-2 mb-3" style="text-align: center; padding: 10px;">
+                                <a class="btn btn-danger" style="color: white;"  onclick="quitarhuesped(this);">Quitar</a>
                             </div>
                         </div>
-
                     </div>
+
 
                     <div class="form-group row">
                         <div class="col-sm-6">
@@ -78,6 +64,42 @@
     $(document).ready(function() {
         $('.selectwo').select2();
     });
+
+
+
+    function htmlobj(id){
+        var htmltxt = "";
+        htmltxt += '<div class="form-row" >';
+        htmltxt += '<div class="col-md-6 mb-3">';
+        htmltxt += '<label th:for="nombre'+id+'">Nombre Huésped</label>';
+        htmltxt += '<input type="text" class="form-control" id="nombre'+id+'" name="nombre'+id+'" placeholder="Nombre Completo" required>';
+        htmltxt += '</div>';
+        htmltxt += '<div class="col-md-4 mb-3">';
+        htmltxt += '<label th:for="ci'+id+'">Nombre Huésped</label>';
+        htmltxt += '<input type="text" class="form-control" th:id="ci'+id+'" th:name="ci'+id+'" placeholder="Cédula de Identidad" required>';
+        htmltxt += '</div>';
+        htmltxt += '<div class="col-md-2 mb-3" style="text-align: center; padding: 10px;">';
+        htmltxt += '<a class="btn btn-danger" style="color: white;"  onclick="quitarhuesped(this);">Quitar (-)</a>';
+        htmltxt += '</div>';
+        htmltxt += '</div>';
+        return htmltxt;
+    }
+
+    function agregarhuesped(iddiv){
+
+        var id = $("#canthpd").val();
+        var htmltxt = htmlobj(id);
+        $("#"+iddiv).append(htmltxt);
+        id++;
+        $("#canthpd").val(id);
+    }
+
+    function quitarhuesped(elemento){
+        var id = $("#canthpd").val();
+        id--;
+        $("#canthpd").val(id);
+        $(elemento).parent().parent().remove();
+    }
 </script>
 </body>
 </html>
