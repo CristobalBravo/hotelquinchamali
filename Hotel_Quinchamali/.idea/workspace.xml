@@ -3,22 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="5f05d48a-5362-4232-99b0-48feff1af94e" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bolsadeideas/springboot/di/app/WebSecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bolsadeideas/springboot/di/app/WebSecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bolsadeideas/springboot/di/app/controllers/ReservaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bolsadeideas/springboot/di/app/controllers/ReservaController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bolsadeideas/springboot/di/app/models/entity/Habitacion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bolsadeideas/springboot/di/app/models/entity/Habitacion.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bolsadeideas/springboot/di/app/models/entity/Huesped.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bolsadeideas/springboot/di/app/models/entity/Huesped.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bolsadeideas/springboot/di/app/models/entity/ReservaHabitacion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bolsadeideas/springboot/di/app/models/entity/ReservaHabitacion.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/cliente/listar.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/cliente/listar.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/error.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/error.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/estado/listar.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/estado/listar.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/habitacion/form.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/habitacion/form.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/habitacion/listar.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/habitacion/listar.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bolsadeideas/springboot/di/app/controllers/ClienteController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bolsadeideas/springboot/di/app/controllers/ClienteController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bolsadeideas/springboot/di/app/models/entity/Cliente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bolsadeideas/springboot/di/app/models/entity/Cliente.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/cliente/form.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/cliente/form.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/layout/layout.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/layout/layout.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/reserva/listar.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/reserva/listar.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/reserva/registrarhb.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/reserva/registrarhb.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/tipo/form.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/tipo/form.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/tipo/listar.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/tipo/listar.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/tipopago/listar.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/tipopago/listar.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -90,31 +78,31 @@
     </state>
     <state x="580" y="218" key="#com.intellij.ide.util.MemberChooser/0.0.1440.900@0.0.1440.900" timestamp="1583599158770" />
     <state x="773" y="291" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1200@0.0.1920.1200" timestamp="1582676579934" />
-    <state width="1398" height="196" key="GridCell.Tab.0.bottom" timestamp="1583690893922">
+    <state width="1398" height="114" key="GridCell.Tab.0.bottom" timestamp="1584230780719">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="196" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1583690893922" />
+    <state width="1398" height="114" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1584230780719" />
     <state width="1878" height="237" key="GridCell.Tab.0.bottom/0.0.1920.1200@0.0.1920.1200" timestamp="1582744166210" />
     <state width="1398" height="197" key="GridCell.Tab.0.bottom/0.23.1440.801@0.23.1440.801" timestamp="1583333820832" />
     <state width="1878" height="344" key="GridCell.Tab.0.bottom/0.23.1920.1177@0.23.1920.1177" timestamp="1582245788177" />
-    <state width="1398" height="196" key="GridCell.Tab.0.center" timestamp="1583690893921">
+    <state width="1398" height="114" key="GridCell.Tab.0.center" timestamp="1584230780718">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="196" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1583690893921" />
+    <state width="1398" height="114" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1584230780718" />
     <state width="1878" height="237" key="GridCell.Tab.0.center/0.0.1920.1200@0.0.1920.1200" timestamp="1582744166209" />
     <state width="1398" height="197" key="GridCell.Tab.0.center/0.23.1440.801@0.23.1440.801" timestamp="1583333820831" />
     <state width="1878" height="344" key="GridCell.Tab.0.center/0.23.1920.1177@0.23.1920.1177" timestamp="1582245788176" />
-    <state width="1398" height="196" key="GridCell.Tab.0.left" timestamp="1583690893920">
+    <state width="1398" height="114" key="GridCell.Tab.0.left" timestamp="1584230780717">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="196" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1583690893920" />
+    <state width="1398" height="114" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1584230780717" />
     <state width="1878" height="237" key="GridCell.Tab.0.left/0.0.1920.1200@0.0.1920.1200" timestamp="1582744166209" />
     <state width="1398" height="197" key="GridCell.Tab.0.left/0.23.1440.801@0.23.1440.801" timestamp="1583333820830" />
     <state width="1878" height="344" key="GridCell.Tab.0.left/0.23.1920.1177@0.23.1920.1177" timestamp="1582245788175" />
-    <state width="1398" height="196" key="GridCell.Tab.0.right" timestamp="1583690893921">
+    <state width="1398" height="114" key="GridCell.Tab.0.right" timestamp="1584230780719">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="196" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1583690893921" />
+    <state width="1398" height="114" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1584230780719" />
     <state width="1878" height="237" key="GridCell.Tab.0.right/0.0.1920.1200@0.0.1920.1200" timestamp="1582744166210" />
     <state width="1398" height="197" key="GridCell.Tab.0.right/0.23.1440.801@0.23.1440.801" timestamp="1583333820832" />
     <state width="1878" height="344" key="GridCell.Tab.0.right/0.23.1920.1177@0.23.1920.1177" timestamp="1582245788177" />

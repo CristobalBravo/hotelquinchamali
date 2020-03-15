@@ -2,108 +2,132 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:replace="layout/layout :: head"></head>
 <body>
-	<header th:replace="layout/layout :: header"></header>
-	<main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
-		<div th:replace="layout/layout :: alerts"></div>
-		<div class="py-4">
-			<div class="card bg-light text-black">
-				<div class="card-header" th:text="${titulo}"></div>
-				<div class="card-body">
+<header th:replace="layout/layout :: header"></header>
+<main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+    <div th:replace="layout/layout :: alerts"></div>
+    <div class="py-4">
+        <div class="card bg-light text-black">
+            <div class="card-header" th:text="${titulo}"></div>
+            <div class="card-body">
 
-					<div th:object="${cliente}" th:remove="tag">
-						<ul th:if="${#fields.hasErrors('*')}" class="alert alert-danger">
-							<li th:each="err: ${#fields.errors('*')}" th:text="${err}"></li>
-						</ul>
-					</div>
-					<form th:action="@{/admin/cliente/crear}" th:object="${cliente}" method="post">
-						<div class="form-group row">
-							<label class="col-sm-2 col-form-label">Nombre Completo</label>
-							<div class="col-sm-6">
-								<input type="text" th:field="*{nombre_completo}"
-									class="form-control" th:errorclass="'form-control alert-danger'" />
-								<small class="form-text text-danger"
-									th:if="${#fields.hasErrors('nombre_completo')}"
-									th:errors="*{nombre_completo}"></small>
-							</div>
-						</div>
-						<div class="form-group row">
-							<label class="col-sm-2 col-form-label">Codigo De
-								Identificacion</label>
-							<div class="col-sm-6">
-								<input type="text" th:field="*{ci}" class="form-control"
-									th:errorclass="'form-control alert-danger'" /> <small
-									class="form-text text-danger" th:if="${#fields.hasErrors('ci')}"
-									th:errors="*{ci}"></small>
-							</div>
-						</div>
+                <div th:object="${cliente}" th:remove="tag">
+                    <ul th:if="${#fields.hasErrors('*')}" class="alert alert-danger">
+                        <li th:each="err: ${#fields.errors('*')}" th:text="${err}"></li>
+                    </ul>
+                </div>
+                <form th:action="@{/admin/cliente/crear}" th:object="${cliente}" method="post">
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">Nombre Completo</label>
+                        <div class="col-sm-6">
+                            <input type="text" th:field="*{nombre_completo}"
+								   size="50"
+                                   class="form-control" th:errorclass="'form-control alert-danger'" required/>
+                            <small class="form-text text-danger"
+                                   th:if="${#fields.hasErrors('nombre_completo')}"
+                                   th:errors="*{nombre_completo}"></small>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">Codigo De
+                            Identificacion</label>
+                        <div class="col-sm-6 ci-input">
+                            <input type="text" th:field="*{ci}" class="form-control"
+								   size="10"
+                                   th:errorclass="'form-control alert-danger'" required/> <small
+                                class="form-text text-danger" th:if="${#fields.hasErrors('ci')}"
+                                th:errors="*{ci}"></small>
+                        </div>
+                    </div>
 
-						<div class="form-group row">
-							<label class="col-sm-2 col-form-label">Nacionalidad</label>
-							<div class="col-sm-6">
-								<input type="text" th:field="*{nacionalidad}"
-									class="form-control" th:errorclass="'form-control alert-danger'" />
-								<small class="form-text text-danger"
-									th:if="${#fields.hasErrors('nacionalidad')}"
-									th:errors="*{nacionalidad}"></small>
-							</div>
-						</div>
-
-
-						<div class="form-group row">
-							<label class="col-sm-2 col-form-label">Direccion</label>
-							<div class="col-sm-6">
-								<input type="text" th:field="*{direccion}" class="form-control"
-									th:errorclass="'form-control alert-danger'" /> <small
-									class="form-text text-danger"
-									th:if="${#fields.hasErrors('direccion')}"
-									th:errors="*{direccion}"></small>
-							</div>
-						</div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">Nacionalidad</label>
+                        <div class="col-sm-6">
+                            <input type="text" th:field="*{nacionalidad}" size="15"
+                                   class="form-control" th:errorclass="'form-control alert-danger'" />
+                            <small class="form-text text-danger"
+                                   th:if="${#fields.hasErrors('nacionalidad')}"
+                                   th:errors="*{nacionalidad}"></small>
+                        </div>
+                    </div>
 
 
-						<div class="form-group row">
-							<label class="col-sm-2 col-form-label">Telefono</label>
-							<div class="col-sm-6">
-								<input type="tel" class="form-control" th:field="*{telefono}"
-									th:errorclass="'form-control alert-danger'" /> <small
-									class="form-text text-danger"
-									th:if="${#fields.hasErrors('telefono')}" th:errors="*{telefono}"></small>
-							</div>
-						</div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">Direccion</label>
+                        <div class="col-sm-6">
+                            <input type="text" th:field="*{direccion}" class="form-control"
+                                   th:errorclass="'form-control alert-danger'" size="50"required/> <small
+                                class="form-text text-danger"
+                                th:if="${#fields.hasErrors('direccion')}"
+                                th:errors="*{direccion}"></small>
+                        </div>
+                    </div>
 
 
-						<div class="form-group row">
-							<label class="col-sm-2 col-form-label">Email</label>
-							<div class="col-sm-6">
-								<input type="text" th:field="*{email}" class="form-control"
-									th:errorclass="'form-control alert-danger'" /> <small
-									class="form-text text-danger"
-									th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></small>
-							</div>
-						</div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">Telefono</label>
+                        <div class="col-sm-6">
+                            <input type="tel" class="form-control" th:field="*{telefono}"
+                                   th:errorclass="'form-control alert-danger'"/> <small
+                                class="form-text text-danger"
+                                th:if="${#fields.hasErrors('telefono')}" th:errors="*{telefono}"></small>
+                        </div>
+                    </div>
 
-						<div class="form-group row">
-							<label class="col-sm-2 col-form-label">Patente</label>
-							<div class="col-sm-6">
-								<input type="text" class="form-control" th:field="*{patente}"
-									th:errorclass="'form-control alert-danger'" /> <small
-									class="form-text text-danger"
-									th:if="${#fields.hasErrors('patente')}" th:errors="*{patente}"></small>
-							</div>
-						</div>
 
-						<div class="form-group row">
-							<div class="col-sm-6">
-								<input type="submit" th:value="${txtbtn}"
-									class="btn btn-primary" />
-							</div>
-						</div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">Email</label>
+                        <div class="col-sm-6">
+                            <input type="text" th:field="*{email}" class="form-control"
+								   pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" size="30"
+                                   th:errorclass="'form-control alert-danger'" required/> <small
+                                class="form-text text-danger"
+                                th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></small>
+                        </div>
+                    </div>
 
-					</form>
-				</div>
-			</div>
-		</div>
-	</main>
-	<footer th:replace="layout/layout :: footer"></footer>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">Patente</label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" th:field="*{patente}"
+                                   th:errorclass="'form-control alert-danger'" size="6"/> <small
+                                class="form-text text-danger"
+                                th:if="${#fields.hasErrors('patente')}" th:errors="*{patente}"></small>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col-sm-6">
+                            <input type="submit" th:value="${(txtbtn != null) ? txtbtn : 'Guardar Cambios del Cliente'}"
+                                   class="btn btn-primary"/>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</main>
+<footer th:replace="layout/layout :: footer"></footer>
+<script>
+var ci = $("input#ci").rut({
+	formatOn: 'keyup',
+    minimumLength: 8, // validar largo mínimo; default: 2
+	validateOn: 'change keyup', // si no se quiere validar, pasar null
+	useThousandsSeparator : false
+})
+
+ci.on('rutInvalido', function(e) {
+	var html = '<small id="ci-input" class="form-text text-danger">CI Inválido</small>';
+	$("#ci").addClass("text-danger");
+	if($("#ci-input").length == 0){
+		$(".ci-input").append(html);
+	}
+});
+
+ci.on('rutValido', function(e, rut, dv){
+	$("#ci").removeClass("text-danger");
+	$("#ci-input").remove();
+});
+</script>
 </body>
 </html>

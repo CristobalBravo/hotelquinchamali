@@ -4,16 +4,10 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "cliente")
@@ -22,16 +16,35 @@ public class Cliente implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+
 	@NotNull
+	@Column(length = 50)
+	@Size(min = 6, max = 50)
 	private String nombre_completo;
+
 	@NotNull
+	@Column(length = 10)
+	@Size(min = 9, max = 10)
 	private String ci;
+
 	@NotNull
+	@Column(length = 50)
+	@Size(min = 6, max = 50)
 	private String direccion;
+
+	@Column(length = 15)
+	@Size(min = 4, max = 15)
 	private String nacionalidad;
+
 	private int telefono;
+
+	@Column(length = 6)
+	@Size(min = 6, max = 6)
 	private String patente;
+
 	@Email
+	@Column(length = 30)
+	@Size(min = 6, max = 30)
 	private String email;
 	
 	@OneToMany(mappedBy = "cliente",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
