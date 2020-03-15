@@ -19,7 +19,7 @@
                     <div class="form-group row">
                         <label class="col-sm-2 col-form-label">Nombre Completo</label>
                         <div class="col-sm-6">
-                            <input type="text" th:field="*{nombre_completo}"
+                            <input type="text" th:field="*{nombre_completo}" placeholder="Ingrese su nombre completo"
 								   size="50"
                                    class="form-control" th:errorclass="'form-control alert-danger'" required/>
                             <small class="form-text text-danger"
@@ -31,7 +31,7 @@
                         <label class="col-sm-2 col-form-label">Codigo De
                             Identificacion</label>
                         <div class="col-sm-6 ci-input">
-                            <input type="text" th:field="*{ci}" class="form-control"
+                            <input type="text" th:field="*{ci}" placeholder="Ingrese su C&eacute;dula de Identidad" class="form-control"
 								   size="10"
                                    th:errorclass="'form-control alert-danger'" required/> <small
                                 class="form-text text-danger" th:if="${#fields.hasErrors('ci')}"
@@ -42,7 +42,7 @@
                     <div class="form-group row">
                         <label class="col-sm-2 col-form-label">Nacionalidad</label>
                         <div class="col-sm-6">
-                            <input type="text" th:field="*{nacionalidad}" size="15"
+                            <input type="text" th:field="*{nacionalidad}" placeholder="Ingrese su nacionalidad" size="15"
                                    class="form-control" th:errorclass="'form-control alert-danger'" />
                             <small class="form-text text-danger"
                                    th:if="${#fields.hasErrors('nacionalidad')}"
@@ -52,9 +52,9 @@
 
 
                     <div class="form-group row">
-                        <label class="col-sm-2 col-form-label">Direccion</label>
+                        <label class="col-sm-2 col-form-label">Direcci&oacute;n</label>
                         <div class="col-sm-6">
-                            <input type="text" th:field="*{direccion}" class="form-control"
+                            <input type="text" th:field="*{direccion}" class="form-control" placeholder="Ingrese su direcci&oacute;n"
                                    th:errorclass="'form-control alert-danger'" size="50"required/> <small
                                 class="form-text text-danger"
                                 th:if="${#fields.hasErrors('direccion')}"
@@ -64,7 +64,7 @@
 
 
                     <div class="form-group row">
-                        <label class="col-sm-2 col-form-label">Telefono</label>
+                        <label class="col-sm-2 col-form-label">Tel&eacute;fono</label>
                         <div class="col-sm-6">
                             <input type="tel" class="form-control" th:field="*{telefono}"
                                    th:errorclass="'form-control alert-danger'"/> <small
@@ -77,7 +77,7 @@
                     <div class="form-group row">
                         <label class="col-sm-2 col-form-label">Email</label>
                         <div class="col-sm-6">
-                            <input type="text" th:field="*{email}" class="form-control"
+                            <input type="text" th:field="*{email}" class="form-control" placeholder="tucorreo@tudominio.com"
 								   pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" size="30"
                                    th:errorclass="'form-control alert-danger'" required/> <small
                                 class="form-text text-danger"
@@ -88,7 +88,7 @@
                     <div class="form-group row">
                         <label class="col-sm-2 col-form-label">Patente</label>
                         <div class="col-sm-6">
-                            <input type="text" class="form-control" th:field="*{patente}"
+                            <input type="text" class="form-control" th:field="*{patente}" placeholder="LLLLNN o LLNNNN"
                                    th:errorclass="'form-control alert-danger'" size="6"/> <small
                                 class="form-text text-danger"
                                 th:if="${#fields.hasErrors('patente')}" th:errors="*{patente}"></small>
