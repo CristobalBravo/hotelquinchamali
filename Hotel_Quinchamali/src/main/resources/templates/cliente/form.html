@@ -67,7 +67,10 @@
                         <label class="col-sm-2 col-form-label">Tel&eacute;fono</label>
                         <div class="col-sm-6">
                             <input type="tel" class="form-control" th:field="*{telefono}"
-                                   th:errorclass="'form-control alert-danger'"/> <small
+                                   th:errorclass="'form-control alert-danger'"
+
+ +                                    pattern="[9]+[0-9]+[0-9]+[0-9]+[0-9]+[0-9]+[0-9]+[0-9]+[0-9]" size="9"/> <small
+
                                 class="form-text text-danger"
                                 th:if="${#fields.hasErrors('telefono')}" th:errors="*{telefono}"></small>
                         </div>
@@ -78,7 +81,7 @@
                         <label class="col-sm-2 col-form-label">Email</label>
                         <div class="col-sm-6">
                             <input type="text" th:field="*{email}" class="form-control" placeholder="tucorreo@tudominio.com"
-								   pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" size="30"
+								   pattern="[a-z0-9.A-Z._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" size="30"
                                    th:errorclass="'form-control alert-danger'" required/> <small
                                 class="form-text text-danger"
                                 th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></small>
@@ -89,6 +92,7 @@
                         <label class="col-sm-2 col-form-label">Patente</label>
                         <div class="col-sm-6">
                             <input type="text" class="form-control" th:field="*{patente}" placeholder="LLLLNN o LLNNNN"
+                            pattern="[0-9.A-Z.a-z]+[0-9.A-Z.a-z]+[0-9.A-Z.a-z]+[0-9.A-Z.a-z]+[0-9.A-Z.a-z]+[0-9.A-Z.a-z]"
                                    th:errorclass="'form-control alert-danger'" size="6"/> <small
                                 class="form-text text-danger"
                                 th:if="${#fields.hasErrors('patente')}" th:errors="*{patente}"></small>
