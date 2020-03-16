@@ -81,7 +81,11 @@
                         <label class="col-sm-2 col-form-label">Email</label>
                         <div class="col-sm-6">
                             <input type="text" th:field="*{email}" class="form-control" placeholder="tucorreo@tudominio.com"
+<<<<<<< HEAD
 								   pattern="[a-z0-9.A-Z._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" size="30"
+=======
+								   pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" size="30"
+>>>>>>> 019ff1abdc9ce1b4355f3f7da920b8ca238e0353
                                    th:errorclass="'form-control alert-danger'" required/> <small
                                 class="form-text text-danger"
                                 th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></small>
@@ -92,7 +96,10 @@
                         <label class="col-sm-2 col-form-label">Patente</label>
                         <div class="col-sm-6">
                             <input type="text" class="form-control" th:field="*{patente}" placeholder="LLLLNN o LLNNNN"
+<<<<<<< HEAD
                             pattern="[0-9.A-Z.a-z]+[0-9.A-Z.a-z]+[0-9.A-Z.a-z]+[0-9.A-Z.a-z]+[0-9.A-Z.a-z]+[0-9.A-Z.a-z]"
+=======
+>>>>>>> 019ff1abdc9ce1b4355f3f7da920b8ca238e0353
                                    th:errorclass="'form-control alert-danger'" size="6"/> <small
                                 class="form-text text-danger"
                                 th:if="${#fields.hasErrors('patente')}" th:errors="*{patente}"></small>
