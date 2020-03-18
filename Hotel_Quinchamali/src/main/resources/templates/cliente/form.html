@@ -31,7 +31,7 @@
                         <label class="col-sm-2 col-form-label">Codigo De
                             Identificacion</label>
                         <div class="col-sm-6 ci-input">
-                            <input type="text" th:field="*{ci}" class="form-control"
+                            <input type="text" th:field="*{ci}" placeholder="Ingrese su C&eacute;dula de Identidad" class="form-control"
 								   size="10"
                                    th:errorclass="'form-control alert-danger'" required/> <small
                                 class="form-text text-danger" th:if="${#fields.hasErrors('ci')}"
@@ -43,6 +43,7 @@
                         <label class="col-sm-2 col-form-label">Nacionalidad</label>
                         <div class="col-sm-6">
                             <input type="text" th:field="*{nacionalidad}" size="20"
+
                                    class="form-control" th:errorclass="'form-control alert-danger'" />
                             <small class="form-text text-danger"
                                    th:if="${#fields.hasErrors('nacionalidad')}"
@@ -52,9 +53,9 @@
 
 
                     <div class="form-group row">
-                        <label class="col-sm-2 col-form-label">Direccion</label>
+                        <label class="col-sm-2 col-form-label">Direcci&oacute;n</label>
                         <div class="col-sm-6">
-                            <input type="text" th:field="*{direccion}" class="form-control"
+                            <input type="text" th:field="*{direccion}" class="form-control" placeholder="Ingrese su direcci&oacute;n"
                                    th:errorclass="'form-control alert-danger'" size="50"required/> <small
                                 class="form-text text-danger"
                                 th:if="${#fields.hasErrors('direccion')}"
@@ -64,10 +65,13 @@
 
 
                     <div class="form-group row">
-                        <label class="col-sm-2 col-form-label">Telefono</label>
+                        <label class="col-sm-2 col-form-label">Tel&eacute;fono</label>
                         <div class="col-sm-6">
                             <input type="tel" class="form-control" th:field="*{telefono}"
-                                   th:errorclass="'form-control alert-danger'"/> <small
+                                   th:errorclass="'form-control alert-danger'"
+
+ +                                    pattern="[9]+[0-9]+[0-9]+[0-9]+[0-9]+[0-9]+[0-9]+[0-9]+[0-9]" size="9"/> <small
+
                                 class="form-text text-danger"
                                 th:if="${#fields.hasErrors('telefono')}" th:errors="*{telefono}"></small>
                         </div>
@@ -78,8 +82,7 @@
                         <label class="col-sm-2 col-form-label">Email</label>
                         <div class="col-sm-6">
                             <input type="text" th:field="*{email}" class="form-control"
-								   pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" size="50"
-                                   th:errorclass="'form-control alert-danger'" required/> <small
+								   pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" size="50" th:errorclass="'form-control alert-danger'" required/> <small
                                 class="form-text text-danger"
                                 th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></small>
                         </div>
