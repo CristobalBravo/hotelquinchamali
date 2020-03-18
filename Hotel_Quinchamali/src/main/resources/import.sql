@@ -21,18 +21,17 @@ INSERT INTO estado_reserva (`id`,`nombre_estado`) VALUES (4,'FINALIZADA');
 INSERT INTO estado_reserva (`id`,`nombre_estado`) VALUES (5,'ELIMINADA');
 
 
-INSERT INTO reserva (`id`,`cantidad_habitaciones`,`check_in`,`check_out`,`descripcion`,`fecha`,`cliente_id`,`venta_id`, `estado_id`, `last_update`) VALUES (1,3,'2019-09-17','2019-09-25','gadgagd','2019-09-24',2,NULL,1,'2019-09-24');
-INSERT INTO reserva (`id`,`cantidad_habitaciones`,`check_in`,`check_out`,`descripcion`,`fecha`,`cliente_id`,`venta_id`, `estado_id`, `last_update`) VALUES (2,1,'2019-09-24','2019-09-25','sin estacionamiento','2019-09-24',1,NULL,1,'2019-09-24');
-INSERT INTO reserva (`id`,`cantidad_habitaciones`,`check_in`,`check_out`,`descripcion`,`fecha`,``cliente_id`,`venta_id`, `estado_id`, `last_update`) VALUES (3,1,'2019-09-25','2019-09-26','con estacionamiento','2019-09-24',1,NULL,1,'2019-09-24');
-INSERT INTO reserva (`id`,`cantidad_habitaciones`,`check_in`,`check_out`,`descripcion`,`fecha`,`cliente_id`,`venta_id`, `estado_id`, `last_update`) VALUES (4,1,'2019-09-26','2019-09-27','desayuno vegano','2019-09-24',3,NULL,1,'2019-09-24');
-INSERT INTO reserva (`id`,`cantidad_habitaciones`,`check_in`,`check_out`,`descripcion`,`fecha`,`cliente_id`,`venta_id`, `estado_id`, `last_update`) VALUES (5,1,'2019-09-27','2019-09-28','llegada a las 14:00','2019-09-24',4,NULL,1,'2019-09-24');
-INSERT INTO reserva (`id`,`cantidad_habitaciones`,`check_in`,`check_out`,`descripcion`,`fecha`,`cliente_id`,`venta_id`, `estado_id`, `last_update`) VALUES (6,1,'2019-09-28','2019-09-29','llegada a las 15:00','2019-09-24',2,NULL,1,'2019-09-24');
-INSERT INTO reserva (`id`,`cantidad_habitaciones`,`check_in`,`check_out`,`descripcion`,`fecha`,`cliente_id`,`venta_id`, `estado_id`, `last_update`) VALUES (7,1,'2019-09-29','2019-09-30','llegada a las 16:00','2019-09-24',3,NULL,1,'2019-09-24');
-INSERT INTO reserva (`id`,`cantidad_habitaciones`,`check_in`,`check_out`,`descripcion`,`fecha`,`cliente_id`,`venta_id`, `estado_id`, `last_update`) VALUES (8,1,'2019-09-29','2019-09-30','llegada a las 17:00','2019-09-24',4,NULL,1,'2019-09-24');
-INSERT INTO reserva (`id`,`cantidad_habitaciones`,`check_in`,`check_out`,`descripcion`,`fecha`,`cliente_id`,`venta_id`, `estado_id`, `last_update`) VALUES (9,1,'2019-09-29','2019-09-30','llegada a las 17:00','2019-09-24',1,NULL,1,'2019-09-24');
-INSERT INTO reserva (`id`,`cantidad_habitaciones`,`check_in`,`check_out`,`descripcion`,`fecha`,`cliente_id`,`venta_id`, `estado_id`, `last_update`) VALUES (10,1,'2019-09-28','2019-09-29','llegada a las 16:00','2019-09-24',1,NULL,1,'2019-09-24');
-INSERT INTO reserva (`id`,`cantidad_habitaciones`,`check_in`,`check_out`,`descripcion`,`fecha`,`cliente_id`,`venta_id`, `estado_id`, `last_update`) VALUES (11,1,'2019-09-27','2019-09-28','llegada a las 16:00','2019-09-24',2,NULL,1,'2019-09-24');
-
+INSERT INTO reserva (`id`,`cantidad_habitaciones`,`check_in`,`check_out`,`descripcion`,`fecha`,`cliente_id`, `estado_id`, `last_update`) VALUES (1,3,'2019-09-17','2019-09-25','gadgagd','2019-09-24',2,1,'2019-09-24');
+INSERT INTO reserva (`id`,`cantidad_habitaciones`,`check_in`,`check_out`,`descripcion`,`fecha`,`cliente_id`, `estado_id`, `last_update`) VALUES (2,1,'2019-09-24','2019-09-25','sin estacionamiento','2019-09-24',1,1,'2019-09-24');
+INSERT INTO reserva (`id`,`cantidad_habitaciones`,`check_in`,`check_out`,`descripcion`,`fecha`,``cliente_id`, `estado_id`, `last_update`) VALUES (3,1,'2019-09-25','2019-09-26','con estacionamiento','2019-09-24',1,1,'2019-09-24');
+INSERT INTO reserva (`id`,`cantidad_habitaciones`,`check_in`,`check_out`,`descripcion`,`fecha`,`cliente_id`, `estado_id`, `last_update`) VALUES (4,1,'2019-09-26','2019-09-27','desayuno vegano','2019-09-24',3,1,'2019-09-24');
+INSERT INTO reserva (`id`,`cantidad_habitaciones`,`check_in`,`check_out`,`descripcion`,`fecha`,`cliente_id`, `estado_id`, `last_update`) VALUES (5,1,'2019-09-27','2019-09-28','llegada a las 14:00','2019-09-24',4,1,'2019-09-24');
+INSERT INTO reserva (`id`,`cantidad_habitaciones`,`check_in`,`check_out`,`descripcion`,`fecha`,`cliente_id`, `estado_id`, `last_update`) VALUES (6,1,'2019-09-28','2019-09-29','llegada a las 15:00','2019-09-24',2,1,'2019-09-24');
+INSERT INTO reserva (`id`,`cantidad_habitaciones`,`check_in`,`check_out`,`descripcion`,`fecha`,`cliente_id`, `estado_id`, `last_update`) VALUES (7,1,'2019-09-29','2019-09-30','llegada a las 16:00','2019-09-24',3,1,'2019-09-24');
+INSERT INTO reserva (`id`,`cantidad_habitaciones`,`check_in`,`check_out`,`descripcion`,`fecha`,`cliente_id`, `estado_id`, `last_update`) VALUES (8,1,'2019-09-29','2019-09-30','llegada a las 17:00','2019-09-24',4,1,'2019-09-24');
+INSERT INTO reserva (`id`,`cantidad_habitaciones`,`check_in`,`check_out`,`descripcion`,`fecha`,`cliente_id`, `estado_id`, `last_update`) VALUES (9,1,'2019-09-29','2019-09-30','llegada a las 17:00','2019-09-24',1,1,'2019-09-24');
+INSERT INTO reserva (`id`,`cantidad_habitaciones`,`check_in`,`check_out`,`descripcion`,`fecha`,`cliente_id`, `estado_id`, `last_update`) VALUES (10,1,'2019-09-28','2019-09-29','llegada a las 16:00','2019-09-24',1,1,'2019-09-24');
+INSERT INTO reserva (`id`,`cantidad_habitaciones`,`check_in`,`check_out`,`descripcion`,`fecha`,`cliente_id`, `estado_id`, `last_update`) VALUES (11,1,'2019-09-27','2019-09-28','llegada a las 16:00','2019-09-24',2,1,'2019-09-24');
 
 
 INSERT INTO tipo_habitacion (`id`,`nombre`, `precio`) VALUES (1,'Single',39000);

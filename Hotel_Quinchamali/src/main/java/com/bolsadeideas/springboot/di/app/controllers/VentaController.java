@@ -1,10 +1,7 @@
 package com.bolsadeideas.springboot.di.app.controllers;
 
 import com.bolsadeideas.springboot.di.app.models.dao.IVentaDao;
-import com.bolsadeideas.springboot.di.app.models.entity.EstadoReserva;
-import com.bolsadeideas.springboot.di.app.models.entity.Reserva;
-import com.bolsadeideas.springboot.di.app.models.entity.ReservaHabitacion;
-import com.bolsadeideas.springboot.di.app.models.entity.TipoPago;
+import com.bolsadeideas.springboot.di.app.models.entity.*;
 import com.bolsadeideas.springboot.di.app.models.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -91,5 +89,66 @@ public class VentaController {
         model.put("montoHospedaje", (long)montoHospedaje);
         model.put("txtbtn", "Pagar");
         return "venta/detalle";
+    }
+
+    @RequestMapping(value = "/detalle/save/{id}", method = RequestMethod.POST)
+    public String registrarSaveHb(@PathVariable(value = "id") Long id, Model model, HttpServletRequest httpRequest, RedirectAttributes flash) {
+        Reserva reserva = null;
+
+        if (id > 0) {
+            reserva = reservaServices.finOne(id);
+        } else {
+            flash.addFlashAttribute("error", "Error al editar la reserva.");
+            return "redirect:/admin/reserva/listar";
+        }
+        long dias = getDifferenceDays(reserva.getCheckIn(), reserva.getCheckOut());
+        double montoHospedaje = 0;
+        for(ReservaHabitacion hb : reserva.getHabitaciones()){
+            montoHospedaje += hb.getHabitacion().getTipoHabitacion().getPrecio() * dias;
+        }
+
+        String detallecostoextra = httpRequest.getParameter("detallecostoextra");
+        Integer costoextra = Integer.parseInt(httpRequest.getParameter("costoextra"));
+        Integer costototal = (int) montoHospedaje + costoextra;
+        Long tipoPagoId = Long.parseLong(httpRequest.getParameter("tipopago"));
+        TipoPago tipoPago = tipoPagoServices.finOne(tipoPagoId);
+
+        Venta venta = new Venta();
+        venta.setCostoExtra(costoextra);
+        venta.setCostoHospedaje((int) montoHospedaje);
+        venta.setReserva(reserva);
+        venta.setFecha(new Date());
+        venta.setDetalleCostoExtra(detallecostoextra);
+        venta.setTipoPago(tipoPago);
+        venta.setMontoTotal(costototal);
+
+        ventaServices.save(venta);
+
+        EstadoReserva estado = estadoReservaServices.findOne(EstadoReserva.ESTADO_PAGADA);
+
+        reserva.setEstadoReserva(estado);
+        reservaServices.save(reserva);
+
+        reserva = reservaServices.finOne(id);
+
+        return "redirect:/admin/venta/detallepago/" + reserva.getId();
+    }
+
+    @RequestMapping(value = { "/detallepago/{reservaid}"}, method = RequestMethod.GET)
+    public String detallepago(@PathVariable(value="reservaid") Long reservaid, Map<String, Object> model, RedirectAttributes flash) {
+        Reserva reserva = reservaServices.finOne(reservaid);
+        List<TipoPago> tipoPagos = tipoPagoServices.findAll();
+
+        if(reserva == null){
+            flash.addFlashAttribute("error", "La reserva no existe");
+            return "redirect:/admin/venta/listar";
+        }
+
+        long dias = getDifferenceDays(reserva.getCheckIn(), reserva.getCheckOut());
+
+        model.put("titulo", "Detalle Pago");
+        model.put("reserva", reserva);
+        model.put("dias", dias);
+        return "venta/detallepago";
     }
 }

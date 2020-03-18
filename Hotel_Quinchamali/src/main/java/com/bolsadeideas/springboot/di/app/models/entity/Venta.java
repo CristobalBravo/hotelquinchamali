@@ -37,8 +37,9 @@ public class Venta implements Serializable {
 	@ManyToOne(fetch = FetchType.LAZY)
 	private TipoPago tipoPago;
 
-	@OneToMany(mappedBy = "venta", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	private List<Reserva> reservas;
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "reserva_id", referencedColumnName = "id")
+	private Reserva reserva;
 
 	@PrePersist
 	public void prePersist() {
@@ -46,7 +47,15 @@ public class Venta implements Serializable {
 	}
 
 	public Venta() {
-		reservas = new ArrayList<Reserva>();
+
+	}
+
+	public Reserva getReserva() {
+		return reserva;
+	}
+
+	public void setReserva(Reserva reserva) {
+		this.reserva = reserva;
 	}
 
 	public Long getId() {
@@ -105,17 +114,6 @@ public class Venta implements Serializable {
 		this.tipoPago = tipoPago;
 	}
 
-	public List<Reserva> getReservas() {
-		return reservas;
-	}
-
-	public void setReservas(List<Reserva> reservas) {
-		this.reservas = reservas;
-	}
-	
-	public void addReserva(Reserva reserva) {
-		reservas.add(reserva);
-	}
 
 	private static final long serialVersionUID = 1L;
 

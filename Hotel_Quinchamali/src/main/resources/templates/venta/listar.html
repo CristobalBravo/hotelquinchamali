@@ -21,7 +21,7 @@
                         <th>Ingreso</th>
                         <th>Salida</th>
                         <th>Estado</th>
-                        <th>Editar</th>
+                        <th>Opciones</th>
 
                     </tr>
                     </thead>
@@ -32,8 +32,13 @@
                         <td th:text="${reserva.checkIn}"></td>
                         <td th:text="${reserva.checkOut}"></td>
                         <td th:text="${reserva.estadoReserva.nombreEstado}"></td>
-                        <td><a class="btn btn-primary btn-sm"
-                               th:href="@{/admin/venta/detalle/} + ${reserva.id}" th:text="'Ver Detalle Pago'"></a></td>
+                        <td><a class="btn btn-primary btn-sm" th:if="${reserva.estadoReserva.id} == 2"
+                               th:href="@{/admin/venta/detalle/} + ${reserva.id}" th:text="'Ver Detalle y Pagar'"></a>
+                            <a class="btn btn-success btn-sm" th:if="${reserva.estadoReserva.id} == 3"
+                               th:href="@{/admin/venta/detallepago/} + ${reserva.id}" th:text="'Ver Detalle de Pago'"></a>
+
+                        </td>
+
 
                     </tr>
                     </tbody>

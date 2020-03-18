@@ -185,11 +185,7 @@ public class ReservaController {
 			}
 		}
 		reserva = reservaServices.finOne(id);
-		List<Habitacion> habitacionesDisponibles = habitacionServices.findHabitacionDisponible(reserva.getCheckIn(),reserva.getCheckOut());
-
-		if(habitacionesDisponibles.size() == 0 || ((List<ReservaHabitacion>) reservaHbServices.findAll()).size() == 0){
-			habitacionesDisponibles = habitacionServices.findAll();
-		}
+		List<Habitacion> habitacionesDisponibles = habitacionServices.findAll();
 
 		reserva = reservaServices.finOne(id);
 

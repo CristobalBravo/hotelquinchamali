@@ -12,8 +12,14 @@
             <div class="card-header" th:text="${titulo}"></div>
             <div class="card-body">
 
-                <form th:action="@{/admin/venta/detalle/save/}+${reserva.id}"  method="post">
-                    <input type="hidden" th:value="${reserva.id}" th:id="${'reservaid'+reserva.id}" th:name="${'reservaid'+reserva.id}"/>
+                <form >
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">Identificador de Venta</label>
+                        <div class="col-sm-6">
+                            <input type="number" th:value="${reserva.venta.id}"
+                                   class="form-control"  disabled="disabled"/>
+                        </div>
+                    </div>
 
                     <div class="form-group row">
                         <label class="col-sm-2 col-form-label">Nombre Cliente</label>
@@ -33,7 +39,7 @@
                         <label class="col-sm-2 col-form-label">Check-In</label>
                         <div class="col-sm-6">
                             <input type="date" th:value="${reserva.checkIn}"
-                                   class="form-control"  disabled="disabled"/>
+                                   class="form-control" disabled="disabled" />
                         </div>
                     </div>
                     <div class="form-group row">
@@ -60,59 +66,51 @@
                     <div class="form-group row">
                         <label class="col-sm-2 col-form-label">Costo de Hospedaje</label>
                         <div class="col-sm-6">
-                            <input type="number" id="montoHospedaje" th:value="${montoHospedaje}"
+                            <input type="number" th:value="${reserva.venta.costoHospedaje}"
                                    class="form-control"  disabled="disabled"/>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-sm-2 col-form-label">Detalle de Costo Extras</label>
                         <div class="col-sm-6">
-                            <input type="text" id="detallecostoextra" name="detallecostoextra"
-                                   class="form-control"  />
+                            <input type="text" th:value="${reserva.venta.detalleCostoExtra}"
+                                   class="form-control"  disabled="disabled"/>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-sm-2 col-form-label">Costo Extras</label>
                         <div class="col-sm-6">
-                            <input type="number" id="costoextra" onkeyup="sumar();" name="costoextra" value="0"
-                                   class="form-control"  />
+                            <input type="number" th:value="${reserva.venta.costoExtra}"
+                                   class="form-control"  disabled="disabled"/>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-sm-2 col-form-label">Costo Total</label>
                         <div class="col-sm-6">
-                            <input type="number" id="costototal"  name="costototal" value="0"
-                                   class="form-control"  />
+                            <input type="number" th:value="${reserva.venta.montoTotal}"
+                                   class="form-control"  disabled="disabled"/>
                         </div>
                     </div>
 
-                    <div class="form-group">
-                        <label for="tipopago">Medio de Pago</label>
-                        <select type="text" class="form-control selectwo" id="tipopago" name="tipopago">
-                            <option th:value="${tip.id}" th:each="tip : ${tipoPagos}" th:text="${tip.nombre}" ></option>
-                        </select>
-                    </div>
                     <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">Medio de Pago</label>
                         <div class="col-sm-6">
-                            <input type="submit" th:value="${txtbtn}"
-                                   class="btn btn-primary" />
+                            <input type="text" th:value="${reserva.venta.tipoPago.nombre}"
+                                   class="form-control"  disabled="disabled"/>
                         </div>
                     </div>
 
                 </form>
+
+                <img width="" th:src="@{/images/pagado.png}" style="width: 150px; height: auto" alt="Pagado"/>
+                <br />
+                <br />
+                <a class="btn btn-primary" th:href="@{/admin/venta/listar}">Volver</a>
             </div>
         </div>
     </div>
 </main>
 <footer th:replace="layout/layout :: footer"></footer>
-<script>
-    function sumar(){
-        var costoh = $("#montoHospedaje").val();
-        var costoextra = $("#costoextra").val();
-        var suma = Number(costoh) + Number(costoextra);
 
-        $("#costototal").val(suma);
-    }
-</script>
 </body>
 </html>
