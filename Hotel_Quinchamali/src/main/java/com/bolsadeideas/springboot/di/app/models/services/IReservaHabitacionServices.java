@@ -1,15 +1,16 @@
 package com.bolsadeideas.springboot.di.app.models.services;
 
+import com.bolsadeideas.springboot.di.app.models.entity.ReservaHabitacion;
 import com.bolsadeideas.springboot.di.app.models.entity.TipoHabitacion;
 
 import java.util.List;
 
 public interface IReservaHabitacionServices {
-    List<TipoHabitacion> findAll();
+    List<ReservaHabitacion> findAll();
 
-    void save(TipoHabitacion tipoHabitacion);
+    void save(ReservaHabitacion reservaHabitacion);
 
-    TipoHabitacion finOne(Long id);
+    ReservaHabitacion finOne(Long id);
 
     void deleted(Long id);
 }

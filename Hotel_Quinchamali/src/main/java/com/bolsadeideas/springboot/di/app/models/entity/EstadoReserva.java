@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "estado_reserva")
@@ -23,6 +24,8 @@ public class EstadoReserva implements Serializable {
 	private Long id;
 	
 	@NotNull
+	@Column(length = 15)
+	@Size(min = 4, max = 15)
 	private String nombreEstado;
 
 	@OneToMany(targetEntity=Reserva.class, mappedBy="estadoReserva", fetch = FetchType.LAZY, cascade = CascadeType.ALL)

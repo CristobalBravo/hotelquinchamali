@@ -58,6 +58,8 @@
                         </li>
                         <li sec:authorize="hasAnyRole('ADMIN')" class="nav-item"><a class="nav-link" th:href="@{/admin/tipopago/listar}">Tipo de Pago</a>
                         </li>
+                        <li sec:authorize="hasAnyRole('ADMIN','RECEPCIONISTA')" class="nav-item"><a class="nav-link" th:href="@{/admin/venta/listar}">Venta</a>
+                        </li>
                     </ul>
                 </div>
             </nav>
@@ -78,6 +80,7 @@
     <div style="margin:20px;" class="alert alert-danger alert-dismissible fade show" role="alert"
          th:if="${error !=null}">
         <span th:text="${error}"></span>
+        <span th:text="${message}"></span>
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
         </button>

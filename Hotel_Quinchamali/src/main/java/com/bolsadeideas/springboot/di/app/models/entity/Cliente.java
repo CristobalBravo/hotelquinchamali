@@ -7,6 +7,7 @@ import java.util.List;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Null;
 import javax.validation.constraints.Size;
 
 @Entity
@@ -18,8 +19,8 @@ public class Cliente implements Serializable {
 	private Long id;
 
 	@NotNull
-	@Column(length = 50)
-	@Size(min = 6, max = 50)
+	@Column(length = 100)
+	@Size(min = 6, max = 100)
 	private String nombre_completo;
 
 	@NotNull
@@ -28,23 +29,22 @@ public class Cliente implements Serializable {
 	private String ci;
 
 	@NotNull
-	@Column(length = 50)
-	@Size(min = 6, max = 50)
+	@Column(length = 100)
+	@Size(min = 6, max = 100)
 	private String direccion;
 
-	@Column(length = 15)
-	@Size(min = 4, max = 15)
+	@Column(length = 20)
+	@Size(min = 4, max = 20)
 	private String nacionalidad;
 
 	private int telefono;
 
-	@Column(length = 6)
-	@Size(min = 6, max = 6)
+	@Column(length = 8)
 	private String patente;
 
 	@Email
-	@Column(length = 30)
-	@Size(min = 6, max = 30)
+	@Column(length = 100)
+	@Size(min = 6, max = 100)
 	private String email;
 	
 	@OneToMany(mappedBy = "cliente",fetch = FetchType.LAZY,cascade = CascadeType.ALL)

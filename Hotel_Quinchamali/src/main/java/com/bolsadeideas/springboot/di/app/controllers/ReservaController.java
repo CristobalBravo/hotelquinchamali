@@ -13,6 +13,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -34,7 +35,7 @@ public class ReservaController {
 	@Autowired
 	private IHabitacionServices habitacionServices;
 	@Autowired
-	private IReservaHabitacionDao reservaHbServices;
+	private IReservaHabitacionServices reservaHbServices;
 	@Autowired
 	private IHuespedServices huespedServices;
 	
@@ -54,28 +55,78 @@ public class ReservaController {
 		model.put("reserva", reserva);
 		model.put("titulo","Crear Reserva");
 		
-		return"reserva/form";
+		return "reserva/form";
 	}
 	
 
 	@RequestMapping(value = { "/listar"}, method = RequestMethod.GET)
 	public String listar(Model model) {
-		List<Reserva> reserva = reservaServices.findAll();
+		List<Reserva> reservas = reservaServices.findAll();
+
+		for(Reserva reserva : reservas){
+			Long id = reserva.getId();
+			if(reserva.getHabitaciones().isEmpty()){
+				for (int i = 0; i < reserva.getCantidadHabitaciones(); i++){
+					ReservaHabitacion hb = new ReservaHabitacion();
+					hb.setReserva(reserva);
+					hb.setCheck_in(reserva.getCheckIn());
+					hb.setCheck_out(reserva.getCheckOut());
+					reservaHbServices.save(hb);
+				}
+			}else if(reserva.getHabitaciones().size() != reserva.getCantidadHabitaciones()){
+				if(reserva.getHabitaciones().size() < reserva.getCantidadHabitaciones()){
+					int tope = reserva.getCantidadHabitaciones() - reserva.getHabitaciones().size();
+					for (int i = 0; i < tope; i++){
+						ReservaHabitacion hb = new ReservaHabitacion();
+						hb.setReserva(reserva);
+						hb.setCheck_in(reserva.getCheckIn());
+						hb.setCheck_out(reserva.getCheckOut());
+						reservaHbServices.save(hb);
+					}
+				}else{
+					int exceso =  reserva.getHabitaciones().size() - reserva.getCantidadHabitaciones();
+					for (int i = 0; i < exceso; i++){
+						reserva = reservaServices.finOne(id);
+						ReservaHabitacion hb = reserva.getHabitaciones().get(reserva.getHabitaciones().size()-1);
+						reservaHbServices.deleted(hb.getId());
+					}
+				}
+			}
+		}
+
 		model.addAttribute("titulo", "Listado De Reservas");
-		model.addAttribute("reservas", reserva);
+		model.addAttribute("reservas", reservas);
 		return "reserva/listar";
 	}
 	
 	@RequestMapping(value = "/crear", method = RequestMethod.POST)
-	public String guardar(@Valid Reserva reserva, BindingResult result, Model model, SessionStatus status,
+	public String guardar(@Valid Reserva reserva, BindingResult result, Model model,
 			RedirectAttributes flash) {
 		if (result.hasErrors()) {
 			model.addAttribute("titulo", "Formulario de Reserva");
 			return "reserva/form";
 		}
-		String mensajeFlash = (reserva.getId() != null) ? "Reserva editada con eéxito" : "Reserva creada con xito";
-		reservaServices.save(reserva);
-		status.setComplete();
+		String mensajeFlash = (reserva.getId() != null) ? "Reserva editada con éxito" : "Reserva creada con xito";
+		EstadoReserva estado = estadoReservaServices.findOne(EstadoReserva.ESTADO_ACTIVA);
+		reserva.setEstadoReserva(estado);
+		reserva.setLastUpdate(new Date());
+		if(reserva.getId() == null){
+			reserva.setFecha(new Date());
+		}
+
+		reserva = reservaServices.save(reserva);
+
+		Long id = reserva.getId();
+		reserva = reservaServices.finOne(id);
+
+		for (int i = 0; i < reserva.getCantidadHabitaciones(); i++){
+			ReservaHabitacion hb = new ReservaHabitacion();
+			hb.setReserva(reserva);
+			hb.setCheck_in(reserva.getCheckIn());
+			hb.setCheck_out(reserva.getCheckOut());
+			reservaHbServices.save(hb);
+		}
+
 		flash.addFlashAttribute("success", mensajeFlash);
 		return "redirect:/admin/reserva/listar";
 	}
@@ -106,12 +157,6 @@ public class ReservaController {
 
 		}
 
-		List<Habitacion> habitacionesDisponibles = habitacionServices.findHabitacionDisponible(reserva.getCheckIn(),reserva.getCheckOut());
-
-		if(habitacionesDisponibles.size() == 0 || ((List<ReservaHabitacion>) reservaHbServices.findAll()).size() == 0){
-			habitacionesDisponibles = habitacionServices.findAll();
-		}
-
 		if(reserva.getHabitaciones().isEmpty()){
 			for (int i = 0; i < reserva.getCantidadHabitaciones(); i++){
 				ReservaHabitacion hb = new ReservaHabitacion();
@@ -120,11 +165,37 @@ public class ReservaController {
 				hb.setCheck_out(reserva.getCheckOut());
 				reservaHbServices.save(hb);
 			}
+		}else if(reserva.getHabitaciones().size() != reserva.getCantidadHabitaciones()){
+			if(reserva.getHabitaciones().size() < reserva.getCantidadHabitaciones()){
+				int tope = reserva.getCantidadHabitaciones() - reserva.getHabitaciones().size();
+				for (int i = 0; i < tope; i++){
+					ReservaHabitacion hb = new ReservaHabitacion();
+					hb.setReserva(reserva);
+					hb.setCheck_in(reserva.getCheckIn());
+					hb.setCheck_out(reserva.getCheckOut());
+					reservaHbServices.save(hb);
+				}
+			}else{
+				int exceso =  reserva.getHabitaciones().size() - reserva.getCantidadHabitaciones();
+				for (int i = 0; i < exceso; i++){
+					reserva = reservaServices.finOne(id);
+					ReservaHabitacion hb = reserva.getHabitaciones().get(reserva.getHabitaciones().size()-1);
+					reservaHbServices.deleted(hb.getId());
+				}
+			}
+		}
+		reserva = reservaServices.finOne(id);
+		List<Habitacion> habitacionesDisponibles = habitacionServices.findHabitacionDisponible(reserva.getCheckIn(),reserva.getCheckOut());
+
+		if(habitacionesDisponibles.size() == 0 || ((List<ReservaHabitacion>) reservaHbServices.findAll()).size() == 0){
+			habitacionesDisponibles = habitacionServices.findAll();
 		}
 
 		reserva = reservaServices.finOne(id);
 
+
 		model.addAttribute("reserva", reserva);
+		model.addAttribute("list", -1);
 		model.addAttribute("hbreservadas", reserva.getHabitaciones());
 		model.addAttribute("hbdisponible", habitacionesDisponibles);
 		model.addAttribute("titulo", "Registrar Habitaciones y Huesped");
@@ -140,27 +211,48 @@ public class ReservaController {
 		} else {
 			flash.addFlashAttribute("error", "Error al editar la reserva.");
 			return "redirect:/admin/reserva/listar";
-
 		}
 
-		for (int i = 0; i < reserva.getCantidadHabitaciones(); i++){
-			Huesped huesped = new Huesped();
-			huesped.setCi(httpRequest.getParameter("ci"+i));
-			huesped.setNombreCompleto(httpRequest.getParameter("nombre"+i));
-			huespedServices.save(huesped);
+		long idHb = 0;
+		int canthpd = 0;
+		int canthpdCurrent = 0;
+		ReservaHabitacion hb;
 
+		for (ReservaHabitacion hbaux : reserva.getHabitaciones()){
+			long idRH = hbaux.getId();
+			hb = reservaHbServices.finOne(idRH);
+			idHb = Long.parseLong(httpRequest.getParameter("habitacion"+hb.getId()));
+			Habitacion ht = habitacionServices.finOne(idHb);
+			hb.setHabitacion(ht);
+
+			canthpd = Integer.parseInt(httpRequest.getParameter("canthpd"+hb.getId()));
+			canthpdCurrent = hb.getHuespedes().size();
+
+			if(canthpdCurrent == 0){
+				for(int j = 1; j <= canthpd; j++){
+					Huesped huesped = new Huesped();
+					huesped.setCi(httpRequest.getParameter("ci"+j));
+					huesped.setNombreCompleto(httpRequest.getParameter("nombre"+j));
+					huesped.setReservaHabitacion(hb);
+					huespedServices.save(huesped);
+				}
+			}else if(canthpd == canthpdCurrent){
+
+			}else if(canthpd < canthpdCurrent){
+
+			}else if(canthpd > canthpdCurrent){
+
+			}
+
+
+
+			reservaHbServices.save(hb);
 		}
 
-		model.addAttribute("reserva", reserva);
-		model.addAttribute("titulo", "Registrar Habitaciones y Huesped");
+		return "redirect:/admin/reserva/registrarhb/" + reserva.getId();
+	}
 
-		return "reserva/registrarhb";
-	}
-	
-	@GetMapping(value ="/cargar-tipos_habitacion/{term}",produces = {"application/json"})
-	public @ResponseBody List<Habitacion> cargarTiposHabitaciones(@PathVariable String term){
-		return clienteServicies.findByNombre(term);
-	}
+
 	@RequestMapping(value="/confirmar/{id}")
 	public String confirmar (@PathVariable(value = "id") Long id, Model model, RedirectAttributes flash) {
 		Reserva reserva = null;
@@ -178,6 +270,7 @@ public class ReservaController {
 		flash.addFlashAttribute("success", "Reserva confirmada con éxito.");
 		return "redirect:/admin/reserva/listar";
 	}
+
 	@RequestMapping(value = "/eliminar/{id}")
 	public String eliminar(@PathVariable(value = "id") Long id, RedirectAttributes flash) {
 		Reserva reserva = null;

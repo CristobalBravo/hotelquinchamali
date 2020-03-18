@@ -2,21 +2,21 @@ package com.bolsadeideas.springboot.di.app.models.services;
 
 import java.util.List;
 
+import com.bolsadeideas.springboot.di.app.models.entity.EstadoReserva;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import com.bolsadeideas.springboot.di.app.models.entity.Reserva;
 
 public interface IReservaServicies {
-	
-	public List<Reserva> findAll();
 
-	public Page<Reserva> findAll(Pageable paginacion);
+    List<Reserva> findAll();
+
+    Reserva save(Reserva reserva);
+
+    Reserva finOne(Long id);
+
+    void deleted(Long id);
 
 
-	public void save(Reserva reserva);
-
-	public Reserva finOne(Long id);
-
-	public void deleted(Long id);
 
 }

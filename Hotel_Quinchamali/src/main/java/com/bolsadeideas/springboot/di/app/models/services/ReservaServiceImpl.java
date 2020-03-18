@@ -2,6 +2,7 @@ package com.bolsadeideas.springboot.di.app.models.services;
 
 import java.util.List;
 
+import com.bolsadeideas.springboot.di.app.models.entity.EstadoReserva;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -19,10 +20,10 @@ public class ReservaServiceImpl implements IReservaServicies {
 	public List<Reserva> findAll() {
 		return (List<Reserva>) reservaDao.findAll();
 	}
+
 	@Transactional // guardamos el cliente en la base de dato
-	public void save(Reserva reserva) {
-		reservaDao.save(reserva);
-		
+	public Reserva save(Reserva reserva) {
+		return reservaDao.save(reserva);
 	}
 	@Transactional(readOnly = true) // solo lectura
 	public Reserva finOne(Long id) {
@@ -33,9 +34,5 @@ public class ReservaServiceImpl implements IReservaServicies {
 		reservaDao.deleteById(id);
 		
 	}
-	@Transactional(readOnly = true) // solo lectura, metodo que permite la paginacion
-	public Page<Reserva> findAll(Pageable paginacion) {
-		
-		return reservaDao.findAll(paginacion);
-	}
+
 }

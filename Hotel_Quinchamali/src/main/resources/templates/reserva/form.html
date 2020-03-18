@@ -34,7 +34,7 @@
 							<label class="col-sm-2 col-form-label">Ingreso</label>
 							<div class="col-sm-6">
 								<input type="date" class="form-control" th:field="*{checkIn}"
-									th:errorclass="'form-control alert-danger'" /> <small
+									th:errorclass="'form-control alert-danger'" required /> <small
 									class="form-text text-danger"
 									th:if="${#fields.hasErrors('*{checkIn}')}"
 									th:errors="*{checkIn}"></small>
@@ -45,7 +45,7 @@
 							<label class="col-sm-2 col-form-label">Salida</label>
 							<div class="col-sm-6">
 								<input type="date" class="form-control" th:field="*{checkOut}"
-									th:errorclass="'form-control alert-danger'" /> <small
+									th:errorclass="'form-control alert-danger'" required/> <small
 									class="form-text text-danger"
 									th:if="${#fields.hasErrors('*{checkOut}')}"
 									th:errors="*{checkOut}"></small>
@@ -70,7 +70,7 @@
 							<div class="col-sm-6">
 								<input type="number" id="cant_h" class="form-control"
 									th:field="*{cantidadHabitaciones}"
-									th:errorclass="'form-control alert-danger'" onchange="showRooms();"/>
+									th:errorclass="'form-control alert-danger'" min="1" max="4" required/>
 									<small
 										class="form-text text-danger"
 										th:if="${#fields.hasErrors('*{cantidadHabitaciones}')}"
@@ -78,13 +78,6 @@
 									</small>
 							</div>
 						</div>
-
-							<select  class="form-control" name="buscar_tipo_habitacion" id="buscar_tipo_habitacion" style="display:none;">
-								<option th:each="tipo : ${tipos}"
-									 th:value="${tipo.id}"
-									 th:utext="${tipo.nombre}">
-								</option>
-							</select>
 
 
 						<div class="form-group row">
@@ -101,8 +94,6 @@
 		</div>
 	</main>
 	<footer th:replace="layout/layout :: footer"></footer>
-	
-	<script
-		th:replace="reserva/js/autocomplete-tipo_habitacion :: javascript"></script>
+
 </body>
 </html>

@@ -24,6 +24,9 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Null;
+import javax.validation.constraints.Size;
+
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
 
@@ -39,9 +42,13 @@ public class Reserva implements Serializable {
 	@Temporal(TemporalType.DATE) // incluye fecha y hora
 	private Date fecha;
 
+	@NotNull
+	@Column(length = 254)
+	@Size(min = 5, max = 254)
 	private String descripcion;
 
 	@Column(name = "cantidad_habitaciones")
+	@NotNull
 	private int cantidadHabitaciones;
 
 	@Temporal(TemporalType.DATE)
@@ -57,7 +64,6 @@ public class Reserva implements Serializable {
 	private Date checkOut;
 
 	@Temporal(TemporalType.DATE)
-	@NotNull
 	@DateTimeFormat(iso=ISO.DATE)
 	@Column(name = "last_update")
 	private Date lastUpdate;

@@ -4,15 +4,10 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;;
+import javax.validation.constraints.Size;
+;
 
 @Entity
 @Table(name = "tipo_pago")
@@ -23,6 +18,8 @@ public class TipoPago implements Serializable {
 	private Long Id;
 
 	@NotNull
+	@Column(length = 50)
+	@Size(min = 4, max = 50)
 	private String nombre;
 
 	@OneToMany(mappedBy = "tipoPago", fetch = FetchType.LAZY, cascade = CascadeType.ALL)

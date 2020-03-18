@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "huesped")
@@ -18,10 +19,15 @@ public class Huesped implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+
 	@NotNull
-	@Column(name = "nombre_completo")
+	@Column(name = "nombre_completo", length = 50)
+	@Size(min = 6, max = 50)
 	private String nombreCompleto;
+
 	@NotNull
+	@Column(length = 10)
+	@Size(min = 9, max = 10)
 	private String ci;
 
 	@ManyToOne(fetch = FetchType.LAZY)

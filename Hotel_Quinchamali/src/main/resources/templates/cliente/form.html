@@ -20,7 +20,7 @@
                         <label class="col-sm-2 col-form-label">Nombre Completo</label>
                         <div class="col-sm-6">
                             <input type="text" th:field="*{nombre_completo}"
-								   size="50"
+								   size="100"
                                    class="form-control" th:errorclass="'form-control alert-danger'" required/>
                             <small class="form-text text-danger"
                                    th:if="${#fields.hasErrors('nombre_completo')}"
@@ -42,7 +42,7 @@
                     <div class="form-group row">
                         <label class="col-sm-2 col-form-label">Nacionalidad</label>
                         <div class="col-sm-6">
-                            <input type="text" th:field="*{nacionalidad}" size="15"
+                            <input type="text" th:field="*{nacionalidad}" size="20"
                                    class="form-control" th:errorclass="'form-control alert-danger'" />
                             <small class="form-text text-danger"
                                    th:if="${#fields.hasErrors('nacionalidad')}"
@@ -78,7 +78,7 @@
                         <label class="col-sm-2 col-form-label">Email</label>
                         <div class="col-sm-6">
                             <input type="text" th:field="*{email}" class="form-control"
-								   pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" size="30"
+								   pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" size="50"
                                    th:errorclass="'form-control alert-danger'" required/> <small
                                 class="form-text text-danger"
                                 th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></small>
@@ -89,7 +89,7 @@
                         <label class="col-sm-2 col-form-label">Patente</label>
                         <div class="col-sm-6">
                             <input type="text" class="form-control" th:field="*{patente}"
-                                   th:errorclass="'form-control alert-danger'" size="6"/> <small
+                                   th:errorclass="'form-control alert-danger'" size="8"/> <small
                                 class="form-text text-danger"
                                 th:if="${#fields.hasErrors('patente')}" th:errors="*{patente}"></small>
                         </div>

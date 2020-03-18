@@ -1,10 +1,84 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head"></head>
 <body>
 
+<header th:replace="layout/layout :: header"></header>
+<main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+    <div th:replace="layout/layout :: alerts"></div>
+    <div class="py-4">
+
+
+        <div class="card bg-light">
+            <div class="card-header" th:text="${titulo}"></div>
+            <div class="card-body">
+
+
+                <table id="listaritem" class="table table-striped table-bordered" style="width:100%">
+                    <thead>
+                    <tr>
+                        <th>Cliente</th>
+                        <th>Ingreso</th>
+                        <th>Salida</th>
+                        <th>Estado</th>
+                        <th>Editar</th>
+
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="reserva: ${reservas}">
+
+                        <td th:text="${reserva.cliente.nombre_completo}"></td>
+                        <td th:text="${reserva.checkIn}"></td>
+                        <td th:text="${reserva.checkOut}"></td>
+                        <td th:text="${reserva.estadoReserva.nombreEstado}"></td>
+                        <td><a class="btn btn-primary btn-sm"
+                               th:href="@{/admin/venta/detalle/} + ${reserva.id}" th:text="'Ver Detalle Pago'"></a></td>
+
+                    </tr>
+                    </tbody>
+
+                </table>
+            </div>
+        </div>
+    </div>
+</main>
+<div th:replace="layout/layout :: modaldelete"></div>
+<footer th:replace="layout/layout :: footer"></footer>
+<script>
+		$(document).ready( function () {
+			$('#listaritem').DataTable({
+			    "scrollX": true,
+				"language": {
+					"url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
+				},
+				dom: 'Bfrtip',
+				buttons: [
+					{
+						extend: 'copy',
+						text: 'Copiar'
+					},
+					{
+						extend: 'csv',
+						text: 'Exportar CSV'
+					},
+					{
+						extend: 'excel',
+						text: 'Exportar a Excel'
+					},
+					{
+						extend: 'pdf',
+						text: 'Exportar a PDF'
+					},
+					{
+						extend: 'print',
+						text: 'Imprimir'
+					},
+				]
+			});
+		} );
+
+
+	</script>
 </body>
 </html>
