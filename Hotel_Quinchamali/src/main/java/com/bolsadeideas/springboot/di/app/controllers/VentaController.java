@@ -79,7 +79,12 @@ public class VentaController {
         long dias = getDifferenceDays(reserva.getCheckIn(), reserva.getCheckOut());
         double montoHospedaje = 0;
         for(ReservaHabitacion hb : reserva.getHabitaciones()){
-            montoHospedaje += hb.getHabitacion().getTipoHabitacion().getPrecio() * dias;
+            if(hb.getHabitacion() != null){
+                montoHospedaje += hb.getHabitacion().getTipoHabitacion().getPrecio() * dias;
+            }else{
+                flash.addFlashAttribute("error", "La reserva no tiene habitación asignada");
+                return "redirect:/admin/venta/listar";
+            }
         }
 
         model.put("titulo", "Detalle Venta");
