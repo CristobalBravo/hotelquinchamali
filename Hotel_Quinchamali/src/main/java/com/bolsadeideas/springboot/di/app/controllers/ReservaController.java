@@ -106,7 +106,7 @@ public class ReservaController {
 			model.addAttribute("titulo", "Formulario de Reserva");
 			return "reserva/form";
 		}
-		String mensajeFlash = (reserva.getId() != null) ? "Reserva editada con éxito" : "Reserva creada con xito";
+		String mensajeFlash = (reserva.getId() != null) ? "Reserva editada con éxito" : "Reserva creada con éxito";
 		EstadoReserva estado = estadoReservaServices.findOne(EstadoReserva.ESTADO_ACTIVA);
 		reserva.setEstadoReserva(estado);
 		reserva.setLastUpdate(new Date());
@@ -195,6 +195,7 @@ public class ReservaController {
 		model.addAttribute("hbreservadas", reserva.getHabitaciones());
 		model.addAttribute("hbdisponible", habitacionesDisponibles);
 		model.addAttribute("titulo", "Registrar Habitaciones y Huesped");
+		flash.addFlashAttribute("success", "Datos registrados correctamente");
 		return "reserva/registrarhb";
 	}
 

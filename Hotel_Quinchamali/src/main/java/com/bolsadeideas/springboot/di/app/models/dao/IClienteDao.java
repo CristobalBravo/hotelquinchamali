@@ -6,4 +6,5 @@ import com.bolsadeideas.springboot.di.app.models.entity.Cliente;
 
 public interface IClienteDao extends PagingAndSortingRepository<Cliente, Long>{
 
+    Cliente findByCi(String ci);
 }

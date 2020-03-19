@@ -24,7 +24,7 @@ public class Cliente implements Serializable {
 	private String nombre_completo;
 
 	@NotNull
-	@Column(length = 10)
+	@Column(length = 10, unique=true)
 	@Size(min = 9, max = 10)
 	private String ci;
 

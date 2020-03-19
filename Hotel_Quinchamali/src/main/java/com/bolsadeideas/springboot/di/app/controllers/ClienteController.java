@@ -80,12 +80,25 @@ public class ClienteController {
 			model.addAttribute("txtbtn", "Guardar Cambios del Cliente");
 			return "cliente/form";
 		}
-		String mensajeFlash = (cliente.getId() != null) ? "Cliente modificado con éxito." : "Cliente creado con éxito.";
 
-		clienteServices.save(cliente);
-		status.setComplete();
-		flash.addFlashAttribute("success", mensajeFlash);
-		return "redirect:listar";
+
+		String mensajeFlash = "";
+		Cliente aux = clienteServices.findByCi(cliente.getCi());
+
+		if(aux == null){
+			mensajeFlash = (cliente.getId() != null) ? "Cliente modificado con éxito." : "Cliente creado con éxito.";
+			clienteServices.save(cliente);
+			status.setComplete();
+			flash.addFlashAttribute("success", mensajeFlash);
+			return "redirect:listar";
+		}else{
+			model.addAttribute("titulo", "Formulario de Cliente");
+			model.addAttribute("txtbtn", "Guardar Cambios del Cliente");
+			mensajeFlash = "El CI se encuentra registrado en el sistema";
+			model.addAttribute("error", mensajeFlash);
+			return "cliente/form";
+		}
+
 	}
 
 	@RequestMapping(value = "/eliminar/{id}")

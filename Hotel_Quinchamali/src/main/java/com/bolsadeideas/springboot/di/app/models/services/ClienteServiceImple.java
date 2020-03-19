@@ -24,6 +24,12 @@ public class ClienteServiceImple implements IClienteServicies {
 	public List<Cliente> findAll() {
 		return (List<Cliente>) clientedao.findAll();
 	}
+
+	@Override
+	public Cliente findByCi(String ci) {
+		return clientedao.findByCi(ci);
+	}
+
 	@Transactional // guardamos el cliente en la base de dato
 	public void save(Cliente cliente) {
 		clientedao.save(cliente);
@@ -38,11 +44,9 @@ public class ClienteServiceImple implements IClienteServicies {
 		clientedao.deleteById(id);
 		
 	}
-	@Transactional(readOnly = true) // solo lectura, metodo que permite la paginacion
-	public Page<Cliente> findAll(Pageable paginacion) {
-		
-		return clientedao.findAll(paginacion);
-	}
+
+
+
 	@Transactional(readOnly = true) // solo lectura, metodo que permite la paginacion
 	public List<Habitacion> findByNombre(String nombre) {
 		

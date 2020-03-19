@@ -12,17 +12,16 @@ import com.bolsadeideas.springboot.di.app.models.entity.TipoHabitacion;
 
 public interface IClienteServicies {
 	
-	public List<Cliente> findAll();
+	 List<Cliente> findAll();
 
-	public Page<Cliente> findAll(Pageable paginacion);
+	Cliente findByCi(String ci);
+
+	 void save(Cliente cliente);
+
+	 Cliente finOne(Long id);
+
+	 void deleted(Long id);
 
 
-	public void save(Cliente cliente);
-
-	public Cliente finOne(Long id);
-
-	public void deleted(Long id);
-
-
-	public List<Habitacion> findByNombre (String nombre);
+	 List<Habitacion> findByNombre(String nombre);
 }

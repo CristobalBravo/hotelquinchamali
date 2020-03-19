@@ -54,7 +54,7 @@
                         </li>
                         <li sec:authorize="hasAnyRole('ADMIN')" class="nav-item"><a class="nav-link" th:href="@{/admin/tipo/listar}">Precios y Tipo</a>
                         </li>
-                        <li sec:authorize="hasAnyRole('ADMIN')" class="nav-item"><a class="nav-link" th:href="@{/admin/estado/listar}">Estados</a>
+                        <li sec:authorize="hasAnyRole('SUPERADMIN')" class="nav-item"><a class="nav-link" th:href="@{/admin/estado/listar}">Estados</a>
                         </li>
                         <li sec:authorize="hasAnyRole('ADMIN')" class="nav-item"><a class="nav-link" th:href="@{/admin/tipopago/listar}">Tipo de Pago</a>
                         </li>
