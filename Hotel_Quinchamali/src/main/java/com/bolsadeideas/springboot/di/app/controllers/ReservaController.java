@@ -246,7 +246,9 @@ public class ReservaController {
 			reservaHbServices.save(hb);
 		}
 
-		return "redirect:/admin/reserva/registrarhb/" + reserva.getId();
+		flash.addAttribute("success", "Habitación y/o Huespedes registrados con éxito.");
+		model.addAttribute("success", "Habitación y/o Huespedes registrados con éxito.");
+		return "redirect:/admin/reserva/listar";
 	}
 
 

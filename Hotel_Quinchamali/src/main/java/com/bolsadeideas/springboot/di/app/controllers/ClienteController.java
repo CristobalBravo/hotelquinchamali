@@ -85,7 +85,7 @@ public class ClienteController {
 		String mensajeFlash = "";
 		Cliente aux = clienteServices.findByCi(cliente.getCi());
 
-		if(aux == null){
+		if(aux == null || cliente.getId() != null){
 			mensajeFlash = (cliente.getId() != null) ? "Cliente modificado con éxito." : "Cliente creado con éxito.";
 			clienteServices.save(cliente);
 			status.setComplete();
